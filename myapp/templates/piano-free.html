@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Piano Free Course | Tune Tastic</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/Keyboard-free.css' %}">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<section id="index">
+
+<nav class="navbar navbar-expand-lg navbar-dark neon-navbar fixed-top">
+<div class="container-fluid px-2">
+
+<!-- Logo -->
+<a class="navbar-brand academy-brand" href="/">
+<img src="{% static 'images/logo.png' %}" 
+class="academy-logo"
+alt="Tune Tastic Logo">
+
+<div class="brand-text">
+<span class="academy-name">Tune Tastic</span>
+<span class="academy-sub">Music Academy</span>
+</div>
+</a>
+
+<!-- Mobile Toggle -->
+<button class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#navMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<!-- Menu -->
+<div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav ms-auto align-items-lg-center">
+
+<li class="nav-item"><a class="nav-link active" href="/#carousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'subscription' %}">Subscription</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'interactive-exercises' %}">Interactive Exercises</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'live-sessions' %}">Live Sessions</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'progress' %}">Progress</a></li>
+<!-- Profile Dropdown -->
+<li class="nav-item ms-lg-3 profile-wrapper">
+
+{% if user.is_authenticated %}
+
+<button class="profile-btn" id="profileToggle">
+👤 {{ user.username }} ▾
+</button>
+
+<div class="profile-menu" id="profileMenu">
+<a href="{% url 'profile' %}">View Profile</a>
+<a href="{% url 'edit_profile' %}">Edit Profile</a>
+<a href="{% url 'logout' %}">Logout</a>
+</div>
+
+{% else %}
+
+<a class="btn btn-primary ms-3" href="{% url 'register' %}">Join Us</a>
+
+{% endif %}
+
+</li>
+
+</ul>
+</div>
+
+</div>
+</nav>
+
+</section>
+
+
+<!-- =============================
+COURSE HEADER
+============================= -->
+
+<section class="course-header">
+
+<div class="container">
+
+<h1 class="course-title">Piano Free Course</h1>
+
+<p class="course-sub">
+Start your piano journey by learning fundamentals, simple melodies and finger coordination.
+</p>
+
+<a href="{% url 'courses' %}" class="back-btn">← Back to Courses</a>
+
+</div>
+
+</section>
+
+
+<!-- =============================
+COURSE LESSONS
+============================= -->
+
+<section class="course-lessons">
+
+<div class="container">
+
+<div class="lesson-grid">
+
+
+<!-- LESSON 1 -->
+
+<div class="lesson-card">
+
+<div class="lesson-number">01</div>
+
+<h3>Piano Fundamentals</h3>
+
+<p>
+Understand piano layout, note names and proper hand positioning.
+</p>
+
+<ul>
+<li>Identify white keys</li>
+<li>Basic finger placement</li>
+<li>C Major scale</li>
+</ul>
+
+<a href="{% url 'piano_fundamentals' %}" class="lesson-btn">Start Lesson</a>
+
+</div>
+
+
+<!-- LESSON 2 -->
+
+<div class="lesson-card">
+
+<div class="lesson-number">02</div>
+
+<h3>Simple Songs Practice</h3>
+
+<p>
+Apply the basics to play simple beginner songs and start performing your first tunes.
+</p>
+
+<ul>
+<li>Twinkle Twinkle Little Star</li>
+<li>Mary Had a Little Lamb</li>
+<li>Note transition practice</li>
+</ul>
+
+<a href="{% url 'simplesongs' %}" class="lesson-btn">Start Lesson</a>
+
+</div>
+
+
+<!-- LESSON 3 -->
+
+<div class="lesson-card">
+
+<div class="lesson-number">03</div>
+
+<h3>Finger Strength</h3>
+
+<p>
+Improve finger agility and coordination while playing piano.
+</p>
+
+<ul>
+<li>5-finger scale exercise</li>
+<li>Finger independence drills</li>
+<li>Metronome rhythm practice</li>
+</ul>
+
+<a href="{% url 'finger_strength' %}" class="lesson-btn">Start Lesson</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<script src="{% static 'js/piano-free.js' %}"></script>
+
+<!-- Bootstrap JS -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Main Script -->
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+/* =======================================================
+   INTERACTIVE EXERCISES SECTION — BIG DESKTOP RECTANGLE CARDS
+======================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary-pink: #FF7AD9;
+    --primary-purple: #C084FC;
+    --primary-blue: #7DD3FC;
+}
+
+/* ===========================
+   SECTION STYLING
+=========================== */
+.interactive-exercises-section {
+    padding-top: 120px;
+    padding-bottom: 40px;
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+/* Section title & subtitle */
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-purple), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 50px;
+    color: rgba(255,255,255,0.85);
+}
+
+/* ===========================
+   CARDS CONTAINER
+=========================== */
+.exercise-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 500px); /* bigger width for desktop */
+    gap: 40px;
+    justify-content: center;
+    margin: auto;
+}
+
+/* Center 3rd card */
+.exercise-card:nth-child(3) {
+    grid-column: 1 / span 2;
+    justify-self: center;
+}
+
+/* ===========================
+   EXERCISE CARD
+=========================== */
+.exercise-card {
+    position: relative;
+    border-radius: 20px;
+    width: 500px;   /* bigger width */
+    height: 320px;  /* bigger height */
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 0.7s forwards;
+}
+
+/* Card background video */
+.card-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Overlay */
+.exercise-card .overlay {
+    position: relative;
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+/* Hover effect */
+.exercise-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 30px rgba(255,123,217,0.5), 0 0 40px rgba(192,132,252,0.35);
+    border: 2px solid rgba(255,123,217,0.4);
+}
+
+.exercise-card:hover .overlay {
+    background: rgba(0,0,0,0.6);
+}
+
+/* Card text */
+.card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-pink), var(--primary-purple));
+    border: none;
+    border-radius: 30px;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, var(--primary-purple), var(--primary-pink));
+}
+
+/* ===========================
+   SCROLL ANIMATION
+=========================== */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+/* Medium screens (tablet) */
+@media (max-width: 992px) {
+    .exercise-cards-container {
+        grid-template-columns: 1fr;
+    }
+    .exercise-card {
+        width: 85%;
+        height: 300px;
+    }
+    .card-title { font-size: 1.6rem; }
+    .card-text { font-size: 0.95rem; }
+    .btn-primary { font-size: 1rem; padding: 10px 24px; }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 576px) {
+    .exercise-card { height: 260px; }
+    .card-title { font-size: 1.3rem; }
+    .card-text { font-size: 0.9rem; }
+    .btn-primary { font-size: 0.95rem; padding: 8px 20px; }
+}

@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Finger Strength</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/fingerstrength.css' %}">
+</head>
+
+<body>
+
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Finger Strength </h1>
+    <p>
+        Improve finger agility, control, and coordination while playing piano. Develop smooth transitions between notes and strengthen muscle memory through consistent practice.
+    </p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+
+        <h2>1. 5-Finger Scale Exercise </h2>
+        <!-- 🎥 YOUTUBE VIDEO HERE -->
+    <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/COH45CQv3F8?si=gXRHfLdjAaoQtNmL&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+        <ul>
+            <li>Build control and smooth movement across keys</li>
+            <li>Strengthen finger positioning accuracy</li>
+            <li>Practice slowly with consistent tempo</li>
+        </ul>
+
+        <button class="btn-primary" onclick="nextLesson(2)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+
+        <h2>2. Finger Independence Drills </h2>
+        <!-- 🎥 YOUTUBE VIDEO HERE -->
+    <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/FdNsVwnBP2A?si=LS3XloVL2tpEtIMj&amp;start=4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+        <ul>
+            <li>Train each finger to move independently</li>
+            <li>Improve coordination between both hands</li>
+            <li>Focus on accuracy over speed</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(1)">⬅ Prev</button>
+        <button class="btn-primary" onclick="nextLesson(3)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson-card" id="lesson3" style="display:none;">
+
+        <h2>3. Metronome Rhythm Practice </h2>
+        <!-- 🎥 YOUTUBE VIDEO HERE -->
+    <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/st7pabkIMZQ?si=GMUnJ2AabdcA2xrg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+        <ul>
+            <li>Improve timing consistency</li>
+            <li>Practice slow → fast tempo control</li>
+            <li>Develop steady rhythm control</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(2)">⬅ Prev</button>
+
+        <button class="btn-primary" onclick="finishCourse()">Finish</button>
+
+        <a href="{% url 'piano_free' %}" class="back-btn">← Back to Course</a>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+// 🔥 Stop all YouTube videos
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";   // stop video instantly
+        iframe.src = src;  // reset iframe
+    });
+}
+
+// Next lesson
+function nextLesson(num) {
+
+    stopAllVideos(); // ✅ STOP VIDEO BEFORE SWITCH
+
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+
+    current = num;
+}
+
+// Previous lesson
+function prevLesson(num) {
+
+    stopAllVideos(); // ✅ STOP VIDEO BEFORE SWITCH
+
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+
+    current = num;
+}
+
+// Finish course
+function finishCourse() {
+
+    stopAllVideos(); // optional but good practice ✅
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "finger_strength"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+
+            document.getElementById("lesson" + current).style.display = "none";
+
+            alert("🎉 Finger Strength Course Completed!");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

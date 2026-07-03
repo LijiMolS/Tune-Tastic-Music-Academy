@@ -1,0 +1,66 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    color: #000;
+}
+
+.choose-course-section {
+    text-align: center;
+    padding: 100px 20px 50px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.choose-course-section.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.choose-course-section h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+}
+
+.choose-course-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #4B5563;
+}
+
+.course-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.choose-course-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #FF7AD9, #C084FC);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.choose-course-btn:hover {
+    background: linear-gradient(135deg, #C084FC, #FF7AD9);
+    color: #fff;
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(192,132,252,0.4);
+}

@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Songs & Performance</title>
+
+<link rel="stylesheet" href="{% static 'css/keyboard_fundamentals.css' %}">
+</head>
+
+<body>
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Songs & Performance</h1>
+    <p>
+        Improve rhythm, timing and expression while performing complete songs.<br>
+        Build confidence and musical expression.
+    </p>
+</section>
+
+<!-- CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+        <h2>1. Play a Song with Both Hands</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/eYmQgOT4blg?si=KqR65daT9YwXZYHJ&amp;start=36" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Combine melody and chords</li>
+            <li>Keep steady rhythm</li>
+            <li>Start slow, then increase speed</li>
+        </ul>
+
+        <button class="btn-primary" onclick="nextLesson(2)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+        <h2>2. Dynamics Practice (Soft / Loud)</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/bY-GXTxNa4o?si=JaGDGgudrKX-Xr8p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Play soft (piano) and loud (forte)</li>
+            <li>Control finger pressure</li>
+            <li>Add emotion to your playing</li>
+        </ul>
+
+        <button onclick="prevLesson(1)" class="btn-primary">⬅ Prev</button>
+        <button onclick="nextLesson(3)" class="btn-primary">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson-card" id="lesson3" style="display:none;">
+        <h2>3. Metronome Timing Practice</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/PeAycXz6PAo?si=FKUsuLlPgkFZvqU8&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Practice with steady tempo</li>
+            <li>Improve timing accuracy</li>
+            <li>Stay consistent throughout</li>
+        </ul>
+
+        <button onclick="prevLesson(2)" class="btn-primary">⬅ Prev</button>
+        <button onclick="finishCourse()" class="btn-primary">Finish</button>
+
+        <!-- FIX THIS NAME IF ERROR COMES -->
+        <a href="{% url 'standard_keyboard' %}" class="back-btn">← Back to Course</a>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";
+        iframe.src = src;
+    });
+}
+
+function nextLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function prevLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function finishCourse() {
+    stopAllVideos();
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "songs_performance"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert("🎉 Songs & Performance Completed!");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

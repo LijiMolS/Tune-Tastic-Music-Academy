@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
+
+    <!-- Payment CSS -->
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+    <style>
+    /* Modern Payment Page CSS (overrides/additions) */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #FF7AD9, #C084FC);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        color: #111;
+        transition: background 0.5s ease;
+    }
+
+    .payment-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        max-width: 450px;
+        width: 90%;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        transform: translateY(-20px);
+        opacity: 0;
+        animation: fadeInUp 0.8s forwards;
+    }
+
+    @keyframes fadeInUp {
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-weight: 800;
+        color: #374151;
+    }
+
+    .summary-table {
+        width: 100%;
+        margin-bottom: 25px;
+        border-collapse: collapse;
+    }
+
+    .summary-table td {
+        padding: 12px 0;
+        font-weight: 500;
+        color: #4B5563;
+    }
+
+    #courseName, #planName, #planPrice {
+        font-weight: 700;
+        color: #111;
+    }
+
+    .payment-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .method-card {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: 2px solid #E5E7EB;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: #fff;
+    }
+
+    .method-card:hover {
+        border-color: #C084FC;
+        box-shadow: 0 8px 20px rgba(192,132,252,0.2);
+        transform: translateY(-2px);
+    }
+
+    .method-card input {
+        margin-right: 15px;
+        accent-color: #C084FC;
+        transform: scale(1.2);
+        transition: transform 0.2s ease;
+    }
+
+    .method-card input:checked {
+        transform: scale(1.3);
+    }
+
+/* Confirm Button */
+.btn-confirm {
+    background: linear-gradient(45deg, #FF7AD9, #C084FC);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 0.7rem 1.5rem;
+    transition: all 0.35s ease;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(192,132,252,0.25);
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-confirm:hover {
+    background: #000;
+    color: #C084FC;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    transform: translateY(-3px);
+}
+
+    @media (max-width: 500px) {
+        .payment-container {
+            padding: 25px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+<div class="payment-container">
+    <h2>Payment Summary</h2>
+
+    <!-- Summary Table -->
+    <table class="summary-table">
+        <tr>
+            <td>Course:</td>
+            <td id="courseName">Piano</td>
+        </tr>
+        <tr>
+            <td>Plan:</td>
+            <td id="planName">Standard</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td id="planPrice">₹499 / month</td>
+        </tr>
+    </table>
+
+    <h3>Select Payment Method</h3>
+    <div class="payment-methods">
+        <div class="method-card">
+            <input type="radio" name="method" value="UPI" id="upi" checked>
+            <label for="upi">UPI</label>
+        </div>
+        <div class="method-card">
+            <input type="radio" name="method" value="NetBanking" id="netbanking">
+            <label for="netbanking">Net Banking</label>
+        </div>
+        <div class="method-card">
+            <input type="radio" name="method" value="Card" id="card">
+            <label for="card">Credit/Debit Card</label>
+        </div>
+    </div>
+
+    <button class="btn-confirm">Confirm Payment</button>
+</div>
+
+<!-- Payment JS -->
+<script src="{% static 'js/payment.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Standard Keyboard Course | Tune Tastic</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/standard-keyboard.css' %}">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+<section id="index">
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark neon-navbar fixed-top">
+  <div class="container-fluid px-2">
+
+    <!-- Logo -->
+    <a class="navbar-brand academy-brand" href="#">
+        <img src="{% static 'images/logo.png' %}" 
+             class="academy-logo"
+             alt="Tune Tastic Logo">
+
+        <div class="brand-text">
+            <span class="academy-name">Tune Tastic</span>
+            <span class="academy-sub">Music Academy</span>
+        </div>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+<li class="nav-item"><a class="nav-link active" href="/#carousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'subscription' %}">Subscription</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'interactive-exercises' %}">Interactive Exercises</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'live-sessions' %}">Live Sessions</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'progress' %}">Progress</a></li>
+<!-- Custom Profile Dropdown -->
+<li class="nav-item ms-lg-3 profile-wrapper">
+
+    {% if user.is_authenticated %}
+    <button class="profile-btn" id="profileToggle">
+        👤 {{ user.username }} ▾
+    </button>
+
+    <div class="profile-menu" id="profileMenu">
+        <a href="{% url 'profile' %}">View Profile</a>
+        <a href="{% url 'edit_profile' %}">Edit Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    {% else %}
+        <a class="btn btn-primary ms-3" href="{% url 'register' %}">Join Us</a>
+    {% endif %}
+
+</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</section>
+<!-- ================= HEADER ================= -->
+
+<section class="course-header">
+
+<div class="container">
+
+<h1 class="course-title">Standard Keyboard Course</h1>
+
+<p class="course-sub">
+Boost your keyboard skills with structured lessons, advanced chords and performance techniques.
+</p>
+
+<a class="back-btn" href="{% url 'courses' %}">← Back to Courses</a>
+
+</div>
+
+</section>
+
+
+<!-- ================= LESSONS ================= -->
+
+<section class="course-lessons">
+
+<div class="container">
+
+<div class="lesson-grid">
+
+
+<!-- LESSON 1 -->
+
+<div class="lesson-card">
+
+<div class="lesson-number">01</div>
+
+<h3>Finger Techniques & Scales</h3>
+
+<p>
+Develop finger strength, coordination and speed with advanced scale exercises.
+</p>
+
+<ul>
+
+<li>Exercise 1: 2-octave C Major scale</li>
+<li>Exercise 2: Finger coordination drills</li>
+<li>Exercise 3: Simple arpeggio practice</li>
+
+</ul>
+
+<a href="{% url 'finger_techniques' %}" class="lesson-btn">Start Lesson</a>
+
+</div>
+
+
+
+<!-- LESSON 2 -->
+
+<div class="lesson-card">
+
+<div class="lesson-number">02</div>
+
+<h3>Chords & Accompaniment</h3>
+
+<p>
+Learn chord structures and accompaniment patterns for smoother playing.
+</p>
+
+<ul>
+
+<li>Exercise 1: Major & minor chords</li>
+<li>Exercise 2: Left-hand accompaniment</li>
+<li>Exercise 3: Harmonizing melodies</li>
+
+</ul>
+
+<a href="{% url 'chords_accompaniment_standard_keyboard' %}" class="lesson-btn">Start Lesson</a>
+
+</div>
+
+
+
+<!-- LESSON 3 -->
+
+<div class="lesson-card">
+
+<div class="lesson-number">03</div>
+
+<h3>Songs & Performance</h3>
+
+<p>
+Improve rhythm, timing and expression while performing complete songs.
+</p>
+
+<ul>
+
+<li>Exercise 1: Play a song with both hands</li>
+<li>Exercise 2: Dynamics practice (soft / loud)</li>
+<li>Exercise 3: Metronome timing practice</li>
+
+</ul>
+
+<a href="{% url 'songs_performance' %}" class="lesson-btn">Start Lesson</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- JS -->
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/standard-keyboard.js' %}"></script>
+
+</body>
+
+</html>

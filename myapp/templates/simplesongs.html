@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Songs Practice</title>
+
+<link rel="stylesheet" href="{% static 'css/simplesongs.css' %}">
+</head>
+
+<body>
+
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Simple Songs Practice</h1>
+    <p>
+        Apply the basics to play simple beginner songs and start performing your first tunes with confidence. Practice step by step to build accuracy, rhythm, and smooth finger movement.
+    </p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+
+        <h2>1. Twinkle Twinkle Little Star</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/p9tW3n6aO9Q?si=K-uqdHWaw_1Rn9OM&amp;start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Learn basic melody pattern</li>
+            <li>Play slowly with right hand</li>
+            <li>Repeat small phrases</li>
+        </ul>
+
+        <button class="btn-primary" onclick="nextLesson(2)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+
+        <h2>2. Mary Had a Little Lamb</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/uYgp3lAfolo?si=alley__9QHS_KbJV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Practice smooth note transitions</li>
+            <li>Focus on timing accuracy</li>
+            <li>Hand coordination basics</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(1)">⬅ Prev</button>
+        <button class="btn-primary" onclick="nextLesson(3)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson-card" id="lesson3" style="display:none;">
+
+        <h2>3. Note Transition Practice</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/vsP3QW5_BJs?si=2nIaFjuPotSH9lLD&amp;start=13" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <p><b>Practice Pattern:</b></p>
+        <p>C → D → E → D → C → E → G</p>
+
+        <ul>
+            <li>Finger switching drills</li>
+            <li>Metronome practice</li>
+            <li>Slow to fast transition</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(2)">⬅ Prev</button>
+        <button class="btn-primary" onclick="finishCourse()">Finish</button>
+
+        <a href="{% url 'piano_free' %}" class="back-btn">← Back to Course</a>
+    </div>
+
+</div>
+
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+// 🔥 Stop all YouTube videos
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";   // stop video instantly
+        iframe.src = src;  // reset iframe
+    });
+}
+
+// Next lesson
+function nextLesson(num) {
+
+    stopAllVideos(); // ✅ STOP VIDEO BEFORE SWITCH
+
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+
+    current = num;
+}
+
+// Previous lesson
+function prevLesson(num) {
+
+    stopAllVideos(); // ✅ STOP VIDEO BEFORE SWITCH
+
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+
+    current = num;
+}
+
+// Finish course
+function finishCourse() {
+
+    stopAllVideos(); // optional but good practice ✅
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "finger_strength"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+
+            document.getElementById("lesson" + current).style.display = "none";
+
+            alert("🎉 Finger Strength Course Completed!");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

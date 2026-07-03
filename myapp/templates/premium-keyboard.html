@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Keyboard Course | Tune Tastic</title>
+
+<!-- Standard CSS -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/standard-keyboard.css' %}">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark neon-navbar fixed-top">
+  <div class="container-fluid px-2">
+
+    <!-- Logo -->
+    <a class="navbar-brand academy-brand" href="#">
+        <img src="{% static 'images/logo.png' %}" 
+             class="academy-logo"
+             alt="Tune Tastic Logo">
+        <div class="brand-text">
+            <span class="academy-name">Tune Tastic</span>
+            <span class="academy-sub">Music Academy</span>
+        </div>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+        <li class="nav-item"><a class="nav-link active" href="/#carousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'subscription' %}">Subscription</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'interactive-exercises' %}">Interactive Exercises</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'live-sessions' %}">Live Sessions</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'progress' %}">Progress</a></li>
+        
+        <li class="nav-item ms-lg-3 profile-wrapper">
+          {% if user.is_authenticated %}
+          <button class="profile-btn" id="profileToggle">
+              👤 {{ user.username }} ▾
+          </button>
+          <div class="profile-menu" id="profileMenu">
+              <a href="{% url 'profile' %}">View Profile</a>
+              <a href="{% url 'edit_profile' %}">Edit Profile</a>
+              <a href="{% url 'logout' %}">Logout</a>
+          </div>
+          {% else %}
+              <a class="btn btn-primary ms-3" href="{% url 'register' %}">Join Us</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HEADER ================= -->
+<section class="course-header">
+  <div class="container">
+    <h1 class="course-title">Premium Keyboard Course</h1>
+    <p class="course-sub">
+        Master keyboard with advanced techniques, chords, and performance!
+    </p>
+    <a class="back-btn" href="{% url 'courses' %}">← Back to Courses</a>
+  </div>
+</section>
+
+<!-- ================= LESSON GRID ================= -->
+<section class="course-lessons">
+  <div class="container">
+    <div class="lesson-grid">
+
+      <!-- LESSON 1 -->
+      <div class="lesson-card">
+        <div class="lesson-number">01</div>
+        <h3>Advanced Finger Techniques</h3>
+        <p>Develop speed, coordination and independence with advanced exercises.</p>
+        <ul>
+          <li>Exercise 1: 2-octave scales practice</li>
+          <li>Exercise 2: Finger coordination & speed drills</li>
+          <li>Exercise 3: Finger independence patterns</li>
+        </ul>
+        <a href="{% url 'advanced_finger_techniques' %}" class="lesson-btn">Start Lesson</a>
+      </div>
+
+      <!-- LESSON 2 -->
+      <div class="lesson-card">
+        <div class="lesson-number">02</div>
+        <h3>Chords & Arpeggios</h3>
+        <p>Learn extended chords, arpeggio patterns and harmonization.</p>
+        <ul>
+          <li>Exercise 1: Extended chords practice</li>
+          <li>Exercise 2: Arpeggio patterns</li>
+          <li>Exercise 3: Harmonization exercises</li>
+        </ul>
+        <a href="{% url 'chords_arpeggios_advanced' %}" class="lesson-btn">Start Lesson</a>
+      </div>
+
+      <!-- LESSON 3 -->
+      <div class="lesson-card">
+        <div class="lesson-number">03</div>
+        <h3>Songs & Performance</h3>
+        <p>Practice dynamics, timing and expression through complete songs.</p>
+        <ul>
+          <li>Exercise 1: Play advanced songs</li>
+          <li>Exercise 2: Dynamics & timing control</li>
+          <li>Exercise 3: Metronome-based performance</li>
+        </ul>
+        <a href="{% url 'songs_performance_advanced' %}" class="lesson-btn">Start Lesson</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= JS ================= -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/standard-keyboard.js' %}"></script>
+
+</body>
+</html>

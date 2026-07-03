@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chords & Accompaniment</title>
+
+<link rel="stylesheet" href="{% static 'css/keyboard_fundamentals.css' %}">
+</head>
+
+<body>
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Chords & Accompaniment</h1>
+    <p>
+        Learn chord structures and accompaniment patterns for smoother playing.
+    </p>
+</section>
+
+<!-- CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+        <h2>1. Major & Minor Chords</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/l54JKFpDfso?si=AkNLIqZfrlMYN3b7&amp;start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Understand major chord structure</li>
+            <li>Learn minor chord variations</li>
+            <li>Practice switching between them</li>
+        </ul>
+
+        <button onclick="nextLesson(2)" class="btn-primary">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+        <h2>2. Left-Hand Accompaniment</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0MVKFKQ0IEY?si=_ZESgi9EmKlXKXJN&amp;start=23" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Practice simple bass patterns</li>
+            <li>Use steady rhythm</li>
+            <li>Coordinate both hands</li>
+        </ul>
+
+        <button onclick="prevLesson(1)" class="btn-primary">⬅ Prev</button>
+        <button onclick="nextLesson(3)" class="btn-primary">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson-card" id="lesson3" style="display:none;">
+        <h2>3. Harmonizing Melodies</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/MLkFwlh7Zeo?si=cajzgclW-YH1nkhr&amp;start=26" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Add chords to simple melodies</li>
+            <li>Understand harmony basics</li>
+            <li>Create smooth transitions</li>
+        </ul>
+
+        <button onclick="prevLesson(2)" class="btn-primary">⬅ Prev</button>
+        <button onclick="finishCourse()" class="btn-primary">Finish</button>
+
+        <!-- Make sure this exists in urls.py -->
+        <a href="{% url 'standard_keyboard' %}" class="back-btn">← Back to Course</a>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";
+        iframe.src = src;
+    });
+}
+
+function nextLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function prevLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function finishCourse() {
+    stopAllVideos();
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "chords_accompaniment"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert("🎉 Chords & Accompaniment Completed!");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

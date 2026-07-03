@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chords & Accompaniment</title>
+
+<link rel="stylesheet" href="{% static 'css/keyboard_fundamentals.css' %}">
+</head>
+
+<body>
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Chords & Accompaniment</h1>
+    <p>
+        Understand major and minor chords and basic rhythm patterns.<br>
+        Learn how to build chords and play simple progressions.
+    </p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+        <h2>1. Major Chords</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/KGtIxbne6pc?si=m-MGQ_BCEE6Oty0F&amp;start=5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Major chords sound happy and bright</li>
+            <li>Formula: Root + 3rd + 5th</li>
+            <li>Example: C - E - G</li>
+        </ul>
+
+        <button class="btn-primary" onclick="nextLesson(2)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+        <h2>2. Minor Chords</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/n2BNh3rsGO0?si=EhNnxBapdUVc_LPz&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Minor chords sound sad or emotional</li>
+            <li>Formula: Root + flat 3rd + 5th</li>
+            <li>Example: A - C - E</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(1)">⬅ Prev</button>
+        <button class="btn-primary" onclick="nextLesson(3)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson-card" id="lesson3" style="display:none;">
+        <h2>3. Chord Progression</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0f9yuDNGJcc?si=uptxHj3MsqG2JZFK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Practice simple progressions like C - G - Am - F</li>
+            <li>Keep rhythm steady</li>
+            <li>Use left hand for chords</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(2)">⬅ Prev</button>
+        <button class="btn-primary" onclick="finishCourse()">Finish</button>
+        <a href="{% url 'keyboard_free' %}" class="back-btn">← Back to Course</a>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";
+        iframe.src = src;
+    });
+}
+
+function nextLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function prevLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function finishCourse() {
+    stopAllVideos();
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "chords_accompaniment"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById("lesson" + current).style.display = "none";
+            alert("🎉 Chords & Accompaniment Completed!");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+.faq-section {
+    font-family: 'Poppins', sans-serif;
+    padding: 120px 40px;
+        /* Correct background image path for CSS file */
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;          /* Cover entire container */
+    background-attachment: fixed;    /* Optional: parallax effect */
+
+    color: #000;
+    text-align: center;
+}
+
+/* Search Input */
+.faq-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.8rem 1rem;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    margin: 0 auto 2rem auto;
+    backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.15);
+    color: #000;
+}
+
+/* FAQ Grid */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* FAQ Item */
+.faq-item {
+    background: rgba(255,255,255,0.15);
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Question */
+.faq-question {
+    padding: 1.2rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Icon Animation */
+.faq-icon {
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg); /* Plus rotates to X */
+}
+
+/* Answer */
+.faq-answer {
+    max-height: 0;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding: 1rem 1.5rem;
+}
+
+/* Highlight matching search text */
+.highlight {
+    background-color: #FFEE58; /* soft yellow */
+    color: #000;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+/* FAQ Answer smooth transition */
+.faq-answer {
+    overflow: hidden;
+    height: 0; /* start collapsed */
+    transition: height 0.35s ease;
+}

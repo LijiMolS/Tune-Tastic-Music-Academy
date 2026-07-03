@@ -1,0 +1,148 @@
+{% load static %}
+
+<!-- ==============================
+   SUBSCRIPTION SECTION
+=============================== -->`
+<link rel="stylesheet" href="{% static 'css/subscription.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark neon-navbar fixed-top">
+  <div class="container-fluid px-2">
+
+    <!-- Logo -->
+    <a class="navbar-brand academy-brand" href="/">
+        <img src="{% static 'images/logo.png' %}" 
+             class="academy-logo"
+             alt="Tune Tastic Logo">
+
+        <div class="brand-text">
+            <span class="academy-name">Tune Tastic</span>
+            <span class="academy-sub">Music Academy</span>
+        </div>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+        <li class="nav-item"><a class="nav-link active" href="/#carousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'subscription' %}">Subscription</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'interactive-exercises' %}">Interactive Exercises</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'live-sessions' %}">Live Sessions</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'progress' %}">Progress</a></li>
+        <!-- Profile -->
+        <li class="nav-item ms-lg-3 profile-wrapper">
+
+        {% if user.is_authenticated %}
+            <button class="profile-btn" id="profileToggle">
+                👤 {{ user.username }} ▾
+            </button>
+
+            <div class="profile-menu" id="profileMenu">
+                <a href="{% url 'profile' %}">View Profile</a>
+                <a href="{% url 'edit_profile' %}">Edit Profile</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+
+        {% else %}
+            <a class="btn btn-primary ms-3" href="{% url 'register' %}">Join Us</a>
+        {% endif %}
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="subscription" class="subscription-section text-center container-fluid">
+    <style>
+        /* ---------- BUTTONS ---------- */
+.btn-subscribe {
+    background: linear-gradient(45deg, var(--primary-pink), var(--primary-purple));
+    color: #fff; /* button text white */
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 0.7rem 1.5rem;
+    transition: all 0.35s ease;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(192,132,252,0.25);
+}
+
+.btn-subscribe:hover {
+    background: #000;
+    color: var(--primary-purple);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    transform: translateY(-3px);
+}
+    </style>
+    <div class="container-fluid">
+        <!-- Section Title -->
+        <h2 class="section-title">Choose Your Plan</h2>
+        <p class="section-subtitle">Get access to premium content and exclusive features</p>
+
+        <!-- Subscription Cards -->
+        <div class="row justify-content-center mt-4">
+            <!-- Free Plan -->
+            <div class="col-md-4 mb-4">
+                <div class="subscription-card">
+                    <h3 class="plan-title">Free</h3>
+                    <p class="plan-price">₹0</p>
+                    <ul class="plan-features">
+                        <li>Access to basic courses</li>
+                        <li>Limited exercises</li>
+                        <li>Community support</li>
+                    </ul>
+                    <button class="btn btn-subscribe" id="free-plan-btn" data-plan="free">Get Started</button>
+                </div>
+            </div>
+
+            <!-- Standard Plan -->
+            <div class="col-md-4 mb-4">
+                <div class="subscription-card featured">
+                    <h3 class="plan-title">Standard</h3>
+                    <p class="plan-price">₹499 / month</p>
+                    <ul class="plan-features">
+                        <li>All Free Plan features</li>
+                        <li>Unlimited exercises</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <button class="btn btn-subscribe">Subscribe Now</button>
+                </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="col-md-4 mb-4">
+                <div class="subscription-card">
+                    <h3 class="plan-title">Premium</h3>
+                    <p class="plan-price">₹999 / month</p>
+                    <ul class="plan-features">
+                        <li>All Standard Plan features</li>
+                        <li>1-on-1 mentoring sessions</li>
+                        <li>Exclusive resources</li>
+                    </ul>
+                    <button class="btn btn-subscribe">Subscribe Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================
+   LINKING SUBSCRIPTION CSS
+=============================== -->
+<!-- CORRECT: only include subscription.js ONCE -->
+<script src="{% static 'js/subscription.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>

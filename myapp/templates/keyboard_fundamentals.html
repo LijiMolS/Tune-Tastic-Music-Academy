@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Keyboard Fundamentals</title>
+
+<link rel="stylesheet" href="{% static 'css/keyboard_fundamentals.css' %}">
+</head>
+
+<body>
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Keyboard Fundamentals</h1>
+    <p>
+        Learn the keyboard layout, note names, and proper finger positioning.
+        Easily identify white and black<br> keys and start playing the C major scale.
+    </p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+        <h2>1. Identify White & Black Keys</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/zYk-ZVoW9nI?si=yJUgJpnGVRQ3tqq4&amp;start=22" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Black keys are grouped in 2s and 3s</li>
+            <li>White key before 2 black keys = C</li>
+            <li>Pattern repeats across the keyboard</li>
+        </ul>
+
+        <button class="btn-primary" onclick="nextLesson(2)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+        <h2>2. Finger Placement</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/6kfAvuh-CcM?si=ISconqKKCaiIgdEP&amp;start=7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Thumb = 1, Index = 2, Middle = 3</li>
+            <li>Keep fingers curved</li>
+            <li>Relax your wrist</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(1)">⬅ Prev</button>
+        <button class="btn-primary" onclick="nextLesson(3)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson-card" id="lesson3" style="display:none;">
+        <h2>3. C Major Scale</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0Hphvu_hJRQ?si=KArDGl8f_RpBlDPX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <p><strong>Right Hand Finger Pattern:</strong></p>
+        <p>1 → 2 → 3 → 1 → 2 → 3 → 4 → 5</p>
+
+        <p><strong>Notes:</strong> C D E F G A B C</p>
+
+        <button class="btn-primary" onclick="prevLesson(2)">⬅ Prev</button>
+        <button class="btn-primary" onclick="finishCourse()">Finish</button>
+        <a href="{% url 'keyboard_free' %}" class="back-btn">← Back to Course</a>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+// Stop videos
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";
+        iframe.src = src;
+    });
+}
+
+// Next
+function nextLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+// Prev
+function prevLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+// Finish
+function finishCourse() {
+    stopAllVideos();
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "keyboard_fundamentals"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById("lesson" + current).style.display = "none";
+            alert("🎉 Keyboard Fundamentals Completed!");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

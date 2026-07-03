@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ear Training | Tune Tastic</title>
+<link rel="stylesheet" href="{% static 'css/ear_training.css' %}">
+</head>
+<body>
+
+<section class="ear-header">
+    <h1>Ear Training Exercises</h1>
+    <p>Listen carefully to each sound and select the correct answer to proceed.</p>
+</section>
+
+<section class="carousel-container">
+
+    <!-- Pitch Identification -->
+    <div class="exercise-card" data-answer="C4">
+        <h2>1. Listen and Identify the Note</h2>
+        <p class="hint">Play the sound and choose which note you hear.</p>
+        <button class="play-btn" data-audio="{% static 'audios/C4.mp3' %}">▶ Play Note</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="C4">C</button>
+            <button class="answer-btn" data-choice="D4">D</button>
+            <button class="answer-btn" data-choice="E4">E</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="exercise-card" data-answer="D4">
+        <h2>2. Listen and Identify the Note</h2>
+        <p class="hint">Play the sound and choose which note you hear.</p>
+        <button class="play-btn" data-audio="{% static 'audios/D4.mp3' %}">▶ Play Note</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="C4">C</button>
+            <button class="answer-btn" data-choice="D4">D</button>
+            <button class="answer-btn" data-choice="E4">E</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="exercise-card" data-answer="E4">
+        <h2>3. Listen and Identify the Note</h2>
+        <p class="hint">Play the sound and choose which note you hear.</p>
+        <button class="play-btn" data-audio="{% static 'audios/E4.mp3' %}">▶ Play Note</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="C4">C</button>
+            <button class="answer-btn" data-choice="D4">D</button>
+            <button class="answer-btn" data-choice="E4">E</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="exercise-card" data-answer="F4">
+        <h2>4. Listen and Identify the Note </h2>
+        <p class="hint">Play the sound and choose which note you hear.</p>
+        <button class="play-btn" data-audio="{% static 'audios/F4.mp3' %}">▶ Play Note</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="F4">F</button>
+            <button class="answer-btn" data-choice="G4">G</button>
+            <button class="answer-btn" data-choice="A4">A</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <!-- Interval Recognition -->
+    <div class="exercise-card" data-answer="M2">
+        <h2>5. Listen and Identify the Interval </h2>
+        <p class="hint">An interval is the distance between two notes. Listen carefully.</p>
+        <button class="play-btn" data-audio="{% static 'audios/M2.mp3' %}">▶ Play Interval</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="M2">Major 2nd</button>
+            <button class="answer-btn" data-choice="P5">Perfect 5th</button>
+            <button class="answer-btn" data-choice="m3">Minor 3rd</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="exercise-card" data-answer="P5">
+        <h2>6. Listen and Identify the Interval </h2>
+        <p class="hint">An interval is the distance between two notes. Listen carefully.</p>
+        <button class="play-btn" data-audio="{% static 'audios/P5.mp3' %}">▶ Play Interval</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="M2">Major 2nd</button>
+            <button class="answer-btn" data-choice="P5">Perfect 5th</button>
+            <button class="answer-btn" data-choice="m3">Minor 3rd</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="exercise-card" data-answer="m3">
+        <h2>7. Listen and Identify the Interval</h2>
+        <p class="hint">An interval is the distance between two notes. Listen carefully.</p>
+        <button class="play-btn" data-audio="{% static 'audios/m3.mp3' %}">▶ Play Interval</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="M2">Major 2nd</button>
+            <button class="answer-btn" data-choice="P5">Perfect 5th</button>
+            <button class="answer-btn" data-choice="m3">Minor 3rd</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <!-- Chord Identification -->
+    <div class="exercise-card" data-answer="Cmaj">
+        <h2>8. Listen and Identify the Chord</h2>
+        <p class="hint">A chord is multiple notes played together. Listen carefully.</p>
+        <button class="play-btn" data-audio="{% static 'audios/Cmaj.mp3' %}">▶ Play Chord</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="Cmaj">Major</button>
+            <button class="answer-btn" data-choice="Cmin">Minor</button>
+            <button class="answer-btn" data-choice="Cdim">Diminished</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="exercise-card" data-answer="Cmin">
+        <h2>9. Listen and Identify the Chord </h2>
+        <p class="hint">A chord is multiple notes played together. Listen carefully.</p>
+        <button class="play-btn" data-audio="{% static 'audios/Cmin.mp3' %}">▶ Play Chord</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="Cmaj">Major</button>
+            <button class="answer-btn" data-choice="Cmin">Minor</button>
+            <button class="answer-btn" data-choice="Cdim">Diminished</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+    <div class="exercise-card" data-answer="Cdim">
+        <h2>10. Listen and Identify the Chord </h2>
+        <p class="hint">A chord is multiple notes played together. Listen carefully.</p>
+        <button class="play-btn" data-audio="{% static 'audios/Cdim.mp3' %}">▶ Play Chord</button>
+        <div class="choices">
+            <button class="answer-btn" data-choice="Cmaj">Major</button>
+            <button class="answer-btn" data-choice="Cmin">Minor</button>
+            <button class="answer-btn" data-choice="Cdim">Diminished</button>
+        </div>
+        <div class="feedback"></div>
+    </div>
+
+</section>
+
+<section class="progress-section">
+    <h2>Progress Tracker</h2>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: 0%;"></div>
+    </div>
+    <p class="score-display">Score: 0 / 10</p>
+</section>
+
+<script src="{% static 'js/ear_training.js' %}"></script>
+</body>
+</html>

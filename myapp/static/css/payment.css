@@ -1,0 +1,133 @@
+/* =============================
+   Payment Page — Neon Glass Style
+============================= */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #000;
+}
+
+.payment-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 400px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    border: 2px solid rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.payment-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(0,0,0,0.25);
+}
+
+.payment-container h2,
+.payment-container h3 {
+    font-weight: 900;
+    text-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+
+h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+h3 { font-size: 1.3rem; margin-top: 25px; }
+
+.summary-table {
+    width: 100%;
+    margin: 15px 0 25px 0;
+    border-collapse: collapse;
+    text-align: left;
+    font-weight: 600;
+    color: #000;
+}
+
+.summary-table td {
+    padding: 10px 15px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.summary-table tr:last-child td {
+    border-bottom: none;
+}
+
+.summary-table td:first-child {
+    font-weight: 700;
+    color: #C084FC; /* Neon purple for labels */
+}
+
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    margin: 25px 0;
+}
+
+.method-card {
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(0,0,0,0.1);
+    padding: 12px;
+    margin: 6px 0;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.35s ease;
+}
+
+.method-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgb(243, 160, 247);
+    border-color: #8d2d85;
+}
+
+.method-card input[type="radio"] {
+    margin-right: 12px;
+}
+
+.method-card input[type="radio"]:checked + label {
+    font-weight: 700;
+    color: #9e50a2; /* Neon blue */
+    text-shadow: 0 0 8px rgba(125,211,252,0.5);
+}
+
+/* Confirm Button */
+.btn-confirm {
+    background: linear-gradient(45deg, #FF7AD9, #C084FC);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 0.7rem 1.5rem;
+    transition: all 0.35s ease;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(192,132,252,0.25);
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-confirm:hover {
+    background: #000;
+    color: #C084FC;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .payment-container { width: 340px; padding: 2rem; }
+}
+
+@media (max-width: 575px) {
+    .payment-container { width: 90%; padding: 1.5rem; }
+    .payment-container h2 { font-size: 1.7rem; }
+    .summary-table td { font-size: 1rem; }
+    .btn-confirm { padding: 0.7rem 1.5rem; font-size: 0.95rem; }
+}

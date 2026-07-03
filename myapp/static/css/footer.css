@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* =======================================================
+   FOOTER SECTION — CENTERED, PREMIUM GLASS STYLE
+======================================================= */
+
+:root {
+    --primary-pink: #FF7AD9;
+    --primary-purple: #C084FC;
+    --primary-blue: #7DD3FC;
+}
+
+#footer {
+    font-family: 'Poppins', sans-serif;
+      /* Correct background image path for CSS file */
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #000;
+    padding: 80px 20px 40px;
+    text-align: center;
+}
+
+/* =======================================================
+   FOOTER CTA / NEWSLETTER
+======================================================= */
+#footer-cta {
+    margin-bottom: 60px;
+}
+
+#footer-cta h2 {
+    font-size: 36px;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-purple), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+#footer-cta p {
+    font-size: 16px;
+    color: #000;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+#newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+#newsletter-form input {
+    width: 280px;
+    padding: 12px 18px;
+    border-radius: 50px;
+    border: 2px solid rgba(0,0,0,0.2); /* border added */
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.15);
+    color: #000;
+    transition: 0.3s;
+}
+
+#newsletter-form input:focus {
+    border-color: var(--primary-purple);
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+}
+
+#newsletter-form button {
+    background: linear-gradient(45deg, var(--primary-pink), var(--primary-purple));
+    color: #fff;
+    font-weight: 700;
+    border-radius: 50px;
+    padding: 0.7rem 1.5rem;
+    transition: all 0.35s ease;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(192,132,252,0.25);
+    border: none;
+    cursor: pointer;
+}
+
+#newsletter-form button:hover {
+    background: #000;
+    color: var(--primary-purple);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    transform: translateY(-3px);
+}
+
+#newsletter-msg {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* =======================================================
+   LINKS GRID — CENTERED, 4 ROWS
+======================================================= */
+#footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.footer-section {
+    flex: 1 1 220px;
+    text-align: center;
+}
+
+.footer-section h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style: none; /* remove bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-purple);
+    padding-left: 4px;
+}
+
+/* =======================================================
+   BRAND SECTION
+======================================================= */
+#footer-brand .academy-name {
+    font-size: 30px;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-purple), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 8px 0;
+}
+
+#footer-brand .footer-tagline {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+/* =======================================================
+   SOCIAL ICONS
+======================================================= */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.social-icons a img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.2);
+    filter: brightness(1.5) drop-shadow(0 0 10px #cd51e9);
+}
+
+/* =======================================================
+   CONTACT EMAIL
+======================================================= */
+.contact-email {
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+/* =======================================================
+   FOOTER BOTTOM
+======================================================= */
+#footer-bottom {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 20px;
+    font-size: 15px;
+    color: rgba(0,0,0,0.7);
+}
+
+/* =======================================================
+   RESPONSIVE
+======================================================= */
+@media(max-width: 992px) {
+    #footer-cta h2 { font-size: 32px; }
+    .footer-section h4 { font-size: 18px; }
+}
+
+@media(max-width: 576px) {
+    #footer-cta h2 { font-size: 28px; }
+    #newsletter-form input, #newsletter-form button { width: 100%; }
+    #footer-links { flex-direction: column; gap: 30px; }
+}
+
+/* =======================================================
+   FOOTER LOGO
+======================================================= */
+.footer-logo {
+    max-width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* =======================================================
+   FADE IN ANIMATION
+======================================================= */
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

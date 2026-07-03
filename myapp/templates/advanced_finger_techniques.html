@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Finger Techniques</title>
+
+<link rel="stylesheet" href="{% static 'css/keyboard_fundamentals.css' %}">
+</head>
+
+<body>
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Advanced Finger Techniques</h1>
+    <p>
+        Develop speed, coordination and independence with advanced exercises.<br>
+        Improve precision and control in your playing.
+    </p>
+</section>
+
+<!-- CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+        <h2>1. 2-Octave Scales Practice</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/oU5jRnpJqM4?si=QIbafJzx2rZ1JTbH&amp;start=2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Practice scales across 2 octaves</li>
+            <li>Maintain even tempo</li>
+            <li>Use proper fingering technique</li>
+        </ul>
+
+        <button class="btn-primary" onclick="nextLesson(2)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+        <h2>2. Finger Coordination & Speed Drills</h2>
+
+        <div class="video-box">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dZ-WJGz6Z_w?si=N7F5Q-nPF-mZlcOD&amp;start=28" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Increase finger speed gradually</li>
+            <li>Practice controlled movements</li>
+            <li>Focus on weak fingers</li>
+        </ul>
+
+        <button onclick="prevLesson(1)" class="btn-primary">⬅ Prev</button>
+        <button onclick="nextLesson(3)" class="btn-primary">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson-card" id="lesson3" style="display:none;">
+        <h2>3. Finger Independence Patterns</h2>
+
+        <div class="video-box">
+           <iframe width="560" height="315" src="https://www.youtube.com/embed/FdNsVwnBP2A?si=kzpGNH4skohm1I2Z&amp;start=25" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Train each finger individually</li>
+            <li>Improve hand independence</li>
+            <li>Build strength and control</li>
+        </ul>
+
+        <button onclick="prevLesson(2)" class="btn-primary">⬅ Prev</button>
+        <button onclick="finishCourse()" class="btn-primary">Finish</button>
+
+        <!-- ⚠️ Change if needed -->
+        <a href="{% url 'premium_keyboard' %}" class="back-btn">← Back to Course</a>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";
+        iframe.src = src;
+    });
+}
+
+function nextLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function prevLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function finishCourse() {
+    stopAllVideos();
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "advanced_finger"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert("🎉 Advanced Finger Techniques Completed!");
+        }
+    });
+}
+</script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

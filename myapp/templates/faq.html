@@ -1,0 +1,48 @@
+{% load static %}
+
+<section id="faq" class="faq-section text-center">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">All your questions answered in one place</p>
+
+        <!-- Optional Search -->
+        <input type="text" id="faq-search" placeholder="Search FAQs..." class="faq-search mb-4">
+
+        <!-- FAQ Grid -->
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is included in the free plan?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    The free plan includes basic exercises, introductory lessons, and limited access to live sessions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I upgrade to premium anytime?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! Upgrading unlocks premium content instantly.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Are live sessions recorded?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! All live sessions are recorded and available in your dashboard.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Link CSS -->
+<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+<script src="{% static 'js/faq.js' %}"></script>

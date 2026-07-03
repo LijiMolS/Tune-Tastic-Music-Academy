@@ -1,0 +1,81 @@
+{% load static %}
+<!-- =========================
+     FOOTER SECTION
+============================= -->
+<footer id="footer">
+
+  <!-- TOP SECTION: Newsletter / CTA -->
+  <section id="footer-cta">
+      <h2> Stay Tuned With Tune Tastic</h2>
+      <p>Get tips, deals, new courses & events straight to your inbox.</p>
+<form id="newsletter-form" method="POST" action="/subscribe/">
+    {% csrf_token %}
+    <input type="email" name="email" placeholder="Enter your best email" required>
+    <button class="profile-btn" type="submit">Subscribe</button>
+</form>
+      <p id="newsletter-msg"></p>
+  </section>
+
+  <!-- MIDDLE SECTION: Links Grid -->
+  <section id="footer-links">
+
+      <!-- BRAND SECTION -->
+      <div class="footer-section" id="footer-brand">
+          <img src="{% static 'images/logo.png' %}" alt="Tune Tastic Logo" class="footer-logo">
+          <h3 class="academy-name">Tune Tastic</h3>
+          <p class="footer-tagline">Where your music journey begins.</p>
+      </div>
+
+      <!-- PRODUCT LINKS -->
+      <div class="footer-section" id="footer-product">
+          <h4>Explore</h4>
+          <ul>
+              <li><a href="{% url 'subscription' %}">Plans & Pricing</a></li>
+              <li><a href="#testimonials">Success Stories</a></li>
+              <li><a href="#faq">FAQ</a></li>
+          </ul>
+      </div>
+
+      <!-- SUPPORT / CONTACT LINKS -->
+      <div class="footer-section" id="footer-support">
+          <h4>Support</h4>
+          <ul>
+              <li><a href="#contact-section">Contact Us</a></li>
+              <li><a href="/help_center">Help Center</a></li>
+              <li><a href="/terms_of_service">Terms of Service</a></li>
+              <li><a href="/privacy_policy">Privacy Policy</a></li>
+          </ul>
+      </div>
+
+      <!-- SOCIAL ICONS -->
+      <div class="footer-section" id="footer-social">
+          <h4>Connect</h4>
+           <div class="social-icons">
+        <a href="https://www.facebook.com/YourPage" target="_blank" rel="noopener">
+            <img src="{% static 'images/facebook.png' %}" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/YourProfile" target="_blank" rel="noopener">
+            <img src="{% static 'images/instagram.png' %}" alt="Instagram">
+        </a>
+        <a href="https://twitter.com/YourProfile" target="_blank" rel="noopener">
+            <img src="{% static 'images/twitter.png' %}" alt="Twitter">
+        </a>
+        <a href="https://www.linkedin.com/in/YourProfile" target="_blank" rel="noopener">
+            <img src="{% static 'images/linkedin.png' %}" alt="LinkedIn">
+        </a>
+    </div>
+          <p class="contact-email">tunetasticm@gmail.com</p>
+      </div>
+
+  </section>
+
+  <!-- BOTTOM SECTION -->
+  <section id="footer-bottom">
+      <p>&copy; 2026 Tune Tastic Music Academy • All Rights Reserved.</p>
+  </section>
+
+</footer>
+<!-- Footer CSS -->
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<!-- Footer JS -->
+<script src="{% static 'js/footer.js' %}"></script>

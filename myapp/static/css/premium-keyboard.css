@@ -1,0 +1,52 @@
+/* Same style as Premium Piano but file separate for modularity */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    color: #000;
+}
+
+.header-section {
+    text-align: center;
+    padding: 100px 20px 40px 20px;
+}
+
+.header-section h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; }
+.header-section p { font-size: 1.2rem; margin-bottom: 20px; color: #4B5563; }
+
+.back-btn {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(45deg, #FF7AD9, #C084FC);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover { background: #000; color: #C084FC; transform: translateY(-2px); }
+
+.lesson-section {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 2px solid rgba(0,0,0,0.1);
+}
+
+.lesson-section h2 { margin-bottom: 15px; font-size: 1.7rem; }
+.exercise-list li { margin: 10px 0; font-weight: 500; }
+
+.scroll-nav { text-align: center; margin: 50px 0; }
+.scroll-nav a {
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+.scroll-nav a.active, .scroll-nav a:hover { color: #C084FC; text-shadow: 0 0 6px rgba(192,132,252,0.5); }

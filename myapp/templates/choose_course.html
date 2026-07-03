@@ -1,0 +1,43 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/choose_course.css' %}">
+
+<section class="choose-course-section text-center fade-in">
+  <h2>Choose Your Course</h2>
+  <p>Select the course you want to take for your plan</p>
+
+  <div class="course-options">
+    <button class="btn choose-course-btn" data-course="piano">Piano</button>
+    <button class="btn choose-course-btn" data-course="keyboard">Keyboard</button>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const plan = localStorage.getItem('selectedPlan');
+    const buttons = document.querySelectorAll('.choose-course-btn');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const course = this.dataset.course;
+            localStorage.setItem('selectedCourse', course);
+
+            // Fade-out effect
+            document.querySelector('.choose-course-section').classList.add('fade-out');
+
+            setTimeout(() => {
+                // Redirect logic
+                if(plan === 'free') {
+                    // Free plan → direct to free course
+                    window.location.href = `/free/${course}/`;
+                } else if(plan === 'standard' || plan === 'premium') {
+                    // Paid plans → go to payment page first
+                    window.location.href = `/payment?plan=${plan}&course=${course}`;
+                } else {
+                    // No plan → fallback to subscription page
+                    window.location.href = '/subscription/';
+                }
+            }, 300); // wait for fade-out animation
+        });
+    });
+});
+</script>

@@ -1,0 +1,400 @@
+/* =====================================================
+   TUNE TASTIC MUSIC ACADEMY
+   LOGIN PAGE — PREMIUM GLASS STYLE
+===================================================== */
+
+/* ---------- GOOGLE FONT ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ---------- ROOT COLORS ---------- */
+:root{
+    --primary-pink:#FF7AD9;
+    --primary-purple:#C084FC;
+}
+
+/* ---------- LOGIN PAGE BACKGROUND ---------- */
+.login-section{
+
+    font-family:'Poppins',sans-serif;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding-top:100px;
+    padding-bottom:60px;
+
+    background:url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size:cover;
+    background-attachment:fixed;
+
+    color:#000;
+}
+
+/* ---------- LOGIN CARD ---------- */
+.login-card{
+
+    width:420px;
+
+    padding:40px;
+
+    background:rgba(255,255,255,0.18);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:20px;
+
+    border:2px solid rgba(0,0,0,0.15);
+
+    box-shadow:0 12px 35px rgba(0,0,0,0.25);
+
+    text-align:center;
+
+    transition:all .35s ease;
+}
+
+/* Hover animation */
+.login-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 45px rgba(0,0,0,0.35);
+}
+
+/* ---------- ACADEMY TITLE ---------- */
+.academy-title{
+
+    font-size:2.4rem;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    margin-bottom:5px;
+
+    background:linear-gradient(
+        45deg,
+        var(--primary-pink),
+        var(--primary-purple)
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* ---------- SUBTITLE ---------- */
+.login-subtitle{
+
+    font-size:0.95rem;
+
+    margin-bottom:25px;
+
+    color:#000;
+}
+
+/* ---------- INPUT GROUP ---------- */
+.input-group{
+
+    margin-bottom:18px;
+
+    text-align:left;
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    border:2px solid #000;
+
+    background:rgba(255,255,255,0.7);
+
+    outline:none;
+
+    transition:0.3s;
+}
+
+/* Input focus effect */
+.input-group input:focus{
+
+    border-color:var(--primary-purple);
+
+    box-shadow:0 0 8px rgba(192,132,252,0.4);
+}
+
+/* ---------- PASSWORD GROUP ---------- */
+.password-group{
+
+    position:relative;
+}
+
+/* Eye icon */
+.toggle-password{
+
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    color:#444;
+}
+
+/* ---------- LOGIN OPTIONS ---------- */
+.login-options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:0.85rem;
+
+    margin-bottom:20px;
+}
+
+/* Forgot password link */
+.forgot-link{
+
+    color:var(--primary-purple);
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:0.3s;
+}
+
+.forgot-link:hover{
+
+    color:#000;
+}
+
+/* ---------- LOGIN BUTTON ---------- */
+.btn-login{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    font-size:0.95rem;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        45deg,
+        var(--primary-pink),
+        var(--primary-purple)
+    );
+
+    transition:all .3s ease;
+
+    box-shadow:0 6px 18px rgba(192,132,252,0.25);
+}
+
+/* Button hover */
+.btn-login:hover{
+
+    background:#000;
+
+    color:var(--primary-purple);
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* ---------- DIVIDER ---------- */
+.divider{
+
+    margin:25px 0;
+
+    font-size:0.85rem;
+
+    color:#000;
+
+    position:relative;
+}
+
+.divider::before,
+.divider::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:50%;
+
+    width:35%;
+
+    height:1px;
+
+    background:rgba(0,0,0,0.2);
+}
+
+.divider::before{
+
+    left:0;
+}
+
+.divider::after{
+
+    right:0;
+}
+
+/* ---------- SOCIAL LOGIN ---------- */
+.social-login{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+/* SOCIAL BUTTON LINKS */
+
+.social-btn{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:10px;
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    font-size:0.95rem;
+    
+    background:#fff;
+    font-weight:600;
+    font-size:0.9rem;
+    cursor:pointer;
+    transition:0.3s;
+    text-decoration:none;   /* removes underline */
+    color:#000;             /* removes blue link color */
+
+        color:#fff;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        45deg,
+        var(--primary-pink),
+        var(--primary-purple)
+    );
+
+    transition:all .3s ease;
+
+    box-shadow:0 6px 18px rgba(192,132,252,0.25);
+
+}
+
+/* Social icons */
+.social-btn img{
+
+    width:18px;
+
+    height:18px;
+}
+
+/* Hover effect */
+.social-btn:hover{
+
+    background:#000;
+
+    color:#fff;
+
+    transform:translateY(-2px);
+}
+
+/* ---------- SIGNUP TEXT ---------- */
+.signup-text{
+
+    margin-top:20px;
+
+    font-size:0.85rem;
+}
+
+.signup-text a{
+
+    color:var(--primary-purple);
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:0.3s;
+}
+
+.signup-text a:hover{
+
+    color:#000;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:500px){
+
+.login-card{
+
+    width:90%;
+
+    padding:30px;
+}
+
+.academy-title{
+
+    font-size:2rem;
+}
+
+}
+/* ---------- ERROR MESSAGE ---------- */
+
+.error-message{
+
+color:red;
+
+font-size:12px;
+
+margin-top:5px;
+
+display:block;
+
+}
+
+
+/* ---------- INVALID INPUT ---------- */
+
+.input-error{
+
+border:2px solid red !important;
+
+}

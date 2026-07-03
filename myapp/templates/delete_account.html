@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Account | Tune Tastic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Use the same CSS as register/edit profile -->
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <div class="register-box">
+        <h2>Delete Account</h2>
+        <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn-register" style="border-color: #ff4d4f; color: #ff4d4f;">
+                Delete Account
+            </button>
+            <a href="{% url 'profile' %}" class="btn-register" style="margin-top: 10px;">
+                Cancel
+            </a>
+        </form>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div style="color: #fff; opacity: 0.8; margin-top: 10px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

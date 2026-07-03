@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Piano Fundamentals</title>
+
+<link rel="stylesheet" href="{% static 'css/piano_fundamentals.css' %}">
+</head>
+
+<body>
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Piano Fundamentals</h1>
+    <p>Understand the layout of the piano keyboard and how notes are arranged.
+Learn the names of white and black  keys with easy identification methods.<br>
+Develop proper hand positioning for comfortable and accurate playing.</p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+        <h2>1. Understanding the Piano Layout</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/TjlBbYdIayg?si=451sZsxhRf4sNaP4&amp;start=20" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Black keys come in groups of 2 and 3</li>
+            <li>White key left of 2 black keys = C</li>
+            <li>Sequence: C D E F G A B</li>
+        </ul>
+
+        <button class="btn-primary" onclick="nextLesson(2)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+        <h2>2. Proper Hand Position</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/N7IIVWvSyRQ?si=zfOO6wM29Qp45GxK&amp;start=29" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Keep fingers curved</li>
+            <li>Keep wrist straight</li>
+            <li>Use finger numbers</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(1)">⬅ Prev</button>
+        <button class="btn-primary" onclick="nextLesson(3)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson-card" id="lesson3" style="display:none;">
+        <h2>3. C Major Scale</h2>
+
+        <div class="video-box">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/VCdusaBI8ZY?si=kG8jWRkftSefyBNn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <p>Finger pattern:</p>
+        <p>1 → 2 → 3 → 1 → 2 → 3 → 4 → 5</p>
+
+        <button class="btn-primary" onclick="prevLesson(2)">⬅ Prev</button>
+        <button class="btn-primary" onclick="finishCourse()">Finish </button>
+        <a href="{% url 'piano_free' %}" class="back-btn">← Back to Course</a>
+    </div>
+</div>
+
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+// 🔥 Stop all YouTube videos
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";   // stop video instantly
+        iframe.src = src;  // reset iframe
+    });
+}
+
+// Next lesson
+function nextLesson(num) {
+
+    stopAllVideos(); // ✅ STOP VIDEO BEFORE SWITCH
+
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+
+    current = num;
+}
+
+// Previous lesson
+function prevLesson(num) {
+
+    stopAllVideos(); // ✅ STOP VIDEO BEFORE SWITCH
+
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+
+    current = num;
+}
+
+// Finish course
+function finishCourse() {
+
+    stopAllVideos(); // optional but good practice ✅
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "finger_strength"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+
+            document.getElementById("lesson" + current).style.display = "none";
+
+            alert("🎉 Finger Strength Course Completed!");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

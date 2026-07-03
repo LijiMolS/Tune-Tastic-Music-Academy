@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary-pink: #FF7AD9;
+    --primary-purple: #C084FC;
+    --primary-blue: #7DD3FC;
+}
+
+/* ===== BODY ===== */
+body{
+    font-family:'Poppins',sans-serif;
+    margin:0;
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* ===== HEADER ===== */
+.ear-header{
+    text-align:center;
+    padding:60px 0px;
+    color:#fff;
+}
+
+.ear-header h1{
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-purple), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ear-header p{
+    font-size: 18px;
+    color: rgba(73, 73, 73, 0.85);
+    margin-bottom: 0%;
+}
+
+/* ===== CONTAINER ===== */
+.carousel-container{
+    max-width:900px;
+    margin:50px auto;
+    position:relative;
+    padding-top:0px ;
+}
+
+/* ===== CARD ===== */
+.exercise-card{
+    
+    background:#fff;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    display:none;
+    flex-direction:column;
+    text-align:center;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exercise-card:hover{
+    transform: translateY(-5px);
+}
+
+/* ===== TITLE ===== */
+.exer/* Only exercise titles left-aligned */
+.exercise-card h2 {
+    text-align: middle;       /* Left-align the exercise title */
+    width: 100%;            /* Take full width of card */
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    text-decoration: #000;
+    
+}
+
+/* ===== TEXT ===== */
+.exercise-card p{
+    font-size:16px;
+    margin:6px 0;
+    max-width:600px;
+    line-height:1.5;
+}
+
+/* ===== CHOICES (GRID PERFECT ALIGNMENT) ===== */
+.choices{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+    
+}
+
+/* ===== COMMON BUTTON STYLE ===== */
+.answer-btn,
+.note-btn{
+    padding:8px 20px;
+    border-radius:20px;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+    background:#f3f3f3;
+    transition:all 0.3s;
+}
+
+/* ===== MCQ BUTTON ===== */
+.answer-btn{
+    background:#f3f3f3;
+}
+
+.answer-btn:hover{
+    background: var(--primary-purple);
+    color:#fff;
+}
+
+/* ===== NOTE BUTTON ===== */
+.note-btn{
+    background: linear-gradient(45deg, #C084FC, #7DD3FC);
+    color:#fff;
+}
+
+.note-btn:hover{
+    transform: scale(1.08);
+}
+
+/* ===== SELECTED STATE ===== */
+.note-btn.active{
+    background:#22c55e !important;
+}
+
+/* ===== CHECK BUTTON ===== */
+.check-btn{
+    margin-top:10px;
+    padding:10px 25px;
+    border:none;
+    border-radius:25px;
+    background: linear-gradient(45deg, #FF7AD9, #C084FC);
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    display:block;
+}
+
+.check-btn:hover{
+    background:#000;
+    color: var(--primary-purple);
+    transform: translateY(-3px);
+}
+
+/* ===== FEEDBACK ===== */
+.feedback{
+    font-weight:700;
+    margin-top:10px;
+    min-height:20px;
+}
+
+/* ===== PROGRESS ===== */
+.progress-section{
+    max-width:900px;
+    margin:30px auto;
+    text-align:center;
+}
+
+.progress-bar{
+    width:100%;
+    height:20px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:10px;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(45deg,#FF7AD9,#7DD3FC);
+    transition:width 0.5s ease;
+}
+
+.score-display{
+    font-weight:700;
+}
+
+/* ===== COMPLETION BUTTONS ===== */
+.btn-primary,
+.btn-secondary {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #FF7AD9, #C084FC);
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    background: #000;
+    color: var(--primary-purple);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    transform: translateY(-4px) scale(1.03);
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+    transform: scale(0.95);
+}
+.visual-rhythm {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.visual-rhythm .beat {
+    padding: 10px 15px;
+    background: #b773b3;
+    border-radius: 5px;
+    color: #fff;
+    transition: background 0.2s;
+}
+
+.visual-rhythm .beat.long {
+    flex: 1.5; /* longer beat visually */
+}
+
+/* flashing effect */
+.visual-rhythm .highlight {
+    background: #00ffcc !important;
+}

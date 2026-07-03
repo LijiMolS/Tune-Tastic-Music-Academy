@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* =====================================
+THEME COLORS
+===================================== */
+
+:root{
+--primary-pink:#FF7AD9;
+--primary-purple:#C084FC;
+--primary-blue:#7DD3FC;
+}
+
+/* =====================================
+CONTACT SECTION
+===================================== */
+
+#contact-section{
+
+font-family:'Poppins',sans-serif;
+
+padding:120px 0px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+        /* Correct background image path for CSS file */
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;          /* Cover entire container */
+    background-attachment: fixed;    /* Optional: parallax effect */
+}
+
+/* =====================================
+CONTACT BOX (GLASS CARD)
+===================================== */
+
+.contact-box{
+
+max-width:520px;
+width:100%;
+
+padding:40px 35px;
+
+text-align:center;
+
+border-radius:22px;
+
+background:rgba(255,255,255,0.35);
+
+backdrop-filter:blur(16px);
+
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+
+animation:contactFade 0.9s ease;
+
+transition:all 0.35s ease;
+
+}
+
+.contact-box:hover{
+
+transform:translateY(-6px);
+box-shadow:0 25px 50px rgba(0,0,0,0.2);
+
+}
+
+/* =====================================
+TITLE
+===================================== */
+
+.contact-box h2{
+
+font-size:34px;
+font-weight:900;
+
+background:linear-gradient(
+90deg,
+var(--primary-pink),
+var(--primary-purple),
+var(--primary-blue)
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+margin-bottom:8px;
+
+}
+
+/* =====================================
+SUBTITLE
+===================================== */
+
+.contact-sub{
+
+font-size:14px;
+color:#333;
+
+margin-bottom:28px;
+
+}
+
+/* =====================================
+FORM
+===================================== */
+
+.mini-contact-form{
+
+display:flex;
+flex-direction:column;
+
+gap:14px;
+
+}
+
+/* =====================================
+INPUT FIELDS
+===================================== */
+
+.mini-contact-form input,
+.mini-contact-form textarea{
+
+padding:12px 16px;
+
+border-radius:40px;
+
+border:2px solid rgba(0,0,0,0.15);
+
+background:rgba(255,255,255,0.7);
+
+font-size:14px;
+
+transition:all 0.3s ease;
+
+}
+
+.mini-contact-form textarea{
+
+border-radius:14px;
+
+}
+
+/* =====================================
+INPUT FOCUS EFFECT
+===================================== */
+
+.mini-contact-form input:focus,
+.mini-contact-form textarea:focus{
+
+outline:none;
+
+border-color:var(--primary-purple);
+
+box-shadow:0 0 12px rgba(192,132,252,0.45);
+
+background:rgba(255,255,255,0.95);
+
+}
+
+/* =====================================
+BUTTON
+===================================== */
+
+.mini-contact-form button{
+
+background:linear-gradient(
+45deg,
+var(--primary-pink),
+var(--primary-purple)
+);
+
+border:none;
+
+padding:12px;
+
+border-radius:40px;
+
+color:white;
+font-weight:700;
+
+cursor:pointer;
+
+letter-spacing:0.5px;
+
+transition:all 0.3s ease;
+
+}
+
+/* BUTTON HOVER */
+
+.mini-contact-form button:hover{
+
+background:black;
+
+color:var(--primary-purple);
+
+transform:translateY(-2px);
+
+box-shadow:0 10px 22px rgba(0,0,0,0.3);
+
+}
+
+/* =====================================
+SEND SUCCESS EFFECT
+===================================== */
+
+.mini-contact-form button:active{
+
+transform:scale(0.96);
+
+}
+
+/* =====================================
+ANIMATION
+===================================== */
+
+@keyframes contactFade{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* =====================================
+RESPONSIVE
+===================================== */
+
+@media(max-width:768px){
+
+.contact-box{
+
+padding:35px 25px;
+
+}
+
+.contact-box h2{
+
+font-size:28px;
+
+}
+
+}
+.contact-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

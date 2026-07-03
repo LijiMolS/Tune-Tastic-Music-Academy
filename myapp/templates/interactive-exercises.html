@@ -1,0 +1,125 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/interactive-exercises.css' %}">
+<!-- ================= NAVBAR ================= -->
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark neon-navbar fixed-top">
+  <div class="container-fluid px-2">
+
+    <!-- Logo -->
+    <a class="navbar-brand academy-brand" href="/">
+        <img src="{% static 'images/logo.png' %}" 
+             class="academy-logo"
+             alt="Tune Tastic Logo">
+
+        <div class="brand-text">
+            <span class="academy-name">Tune Tastic</span>
+            <span class="academy-sub">Music Academy</span>
+        </div>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        
+<li class="nav-item"><a class="nav-link active" href="/#carousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'subscription' %}">Subscription</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'interactive-exercises' %}">Interactive Exercises</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'live-sessions' %}">Live Sessions</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'progress' %}">Progress</a></li>
+        <!-- Profile -->
+        <li class="nav-item ms-lg-3 profile-wrapper">
+
+        {% if user.is_authenticated %}
+            <button class="profile-btn" id="profileToggle">
+                👤 {{ user.username }} ▾
+            </button>
+
+            <div class="profile-menu" id="profileMenu">
+                <a href="{% url 'profile' %}">View Profile</a>
+                <a href="{% url 'edit_profile' %}">Edit Profile</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+
+        {% else %}
+            <a class="btn btn-primary ms-3" href="{% url 'register' %}">Join Us</a>
+        {% endif %}
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Interactive Exercises Section -->
+<section id="interactive-exercises" class="interactive-exercises-section">
+    <!-- Section Title -->
+    <h2 class="section-title">Interactive Exercises</h2>
+    <p class="section-subtitle" style="color: rgb(100, 98, 98);">
+        Turn practice into magic! Train your ear, sharpen your timing, 
+    and unleash your creativity with<br> interactive exercises 
+       that transform learning into pure musical flow.
+    </p>
+
+    <!-- Cards Container -->
+    <div class="exercise-cards-container">
+        <!-- Ear Training Card -->
+        <div class="exercise-card">
+            <video autoplay muted loop class="card-bg-video">
+                <source src="{% static 'videos/ear-training.mp4' %}" type="video/mp4">
+            </video>
+            <div class="overlay">
+                <h5 class="card-title">Ear Training</h5>
+                <p class="card-text">
+                    Identify notes, intervals, and chords by ear. Score points for accuracy and speed.
+                </p>
+                <a href="{% url 'ear_training_play' %}" class="profile-btn">Start Ear Training</a>
+            </div>
+        </div>
+
+        <!-- Chord & Melody Builder -->
+        <div class="exercise-card">
+            <video autoplay muted loop class="card-bg-video">
+                <source src="{% static 'videos/chord-builder.mp4' %}" type="video/mp4">
+            </video>
+            <div class="overlay">
+                <h5 class="card-title">Chord & Melody Builder</h5>
+                <p class="card-text">
+                    Create your own chords and melodies with an intuitive drag-and-drop interface.
+                </p>
+                <a href="{% url 'builder_exercise' %}" class="profile-btn">Try Builder</a>
+            </div>
+        </div>
+
+        <!-- Rhythm Challenges -->
+        <div class="exercise-card">
+            <video autoplay muted loop class="card-bg-video">
+                <source src="{% static 'videos/rhythm-challenges.mp4' %}" type="video/mp4">
+            </video>
+            <div class="overlay">
+                <h5 class="card-title">Rhythm Challenges</h5>
+                <p class="card-text">
+                    Tap in time with rhythms or falling notes and improve your timing and coordination.
+                </p>
+                <a href="{% url 'rhythm_challenges' %}" class="profile-btn">Start Rhythm</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Link External CSS -->
+
+<script src="{% static 'js/interactive-exercises.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>

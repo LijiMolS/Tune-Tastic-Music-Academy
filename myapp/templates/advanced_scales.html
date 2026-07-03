@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Scales & Finger Techniques</title>
+
+<link rel="stylesheet" href="{% static 'css/keyboard_fundamentals.css' %}">
+</head>
+
+<body>
+{% csrf_token %}
+
+<!-- HEADER -->
+<section class="lesson-header">
+    <h1>Advanced Scales & Finger Techniques</h1>
+    <p>
+        Develop finger strength and precision with advanced scale and arpeggio practice.<br>
+        Improve speed, control, and coordination.
+    </p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="lesson-container">
+
+    <!-- LESSON 1 -->
+    <div class="lesson-card" id="lesson1">
+        <h2>1. 5-Octave C Major Scale</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/D9PDFErKDqE?si=JcmASES9qpM7cvke&amp;start=17" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Play across 5 octaves</li>
+            <li>Maintain even tempo</li>
+            <li>Use correct finger crossing</li>
+        </ul>
+
+        <button class="btn-primary" onclick="nextLesson(2)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson-card" id="lesson2" style="display:none;">
+        <h2>2. Arpeggio (C Major)</h2>
+
+        <div class="video-box">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/NCR39UcXZxA?si=jJ58EAwxS_lctbM2&amp;start=7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <ul>
+            <li>Break chords into individual notes</li>
+            <li>Practice smooth hand movement</li>
+            <li>Focus on accuracy and timing</li>
+        </ul>
+
+        <button class="btn-primary" onclick="prevLesson(1)">⬅ Prev</button>
+        <button class="btn-primary" onclick="nextLesson(3)">Next ➡</button>
+    </div>
+
+    <!-- LESSON 3 -->
+   <div class="lesson-card" id="lesson3" style="display:none;">
+    <h2>3. How to Read Sheet Music</h2>
+
+    <div class="video-box">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OA-DQPGvdiU?si=ePW89N0F4o_ynmlk&amp;start=7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <ul>
+        <li>Understand the staff, clefs, and notes</li>
+        <li>Practice reading simple melodies</li>
+        <li>Recognize rhythm and timing patterns</li>
+    </ul>
+
+
+        <button class="btn-primary" onclick="prevLesson(2)">⬅ Prev</button>
+        <button class="btn-primary" onclick="finishCourse()">Finish</button>
+        <a href="{% url 'standard_piano' %}" class="back-btn">← Back to Course</a>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 1;
+
+function stopAllVideos() {
+    document.querySelectorAll("iframe").forEach(iframe => {
+        let src = iframe.src;
+        iframe.src = "";
+        iframe.src = src;
+    });
+}
+
+function nextLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function prevLesson(num) {
+    stopAllVideos();
+    document.getElementById("lesson" + current).style.display = "none";
+    document.getElementById("lesson" + num).style.display = "block";
+    current = num;
+}
+
+function finishCourse() {
+    stopAllVideos();
+
+    fetch("{% url 'mark_completed' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            lesson: "advanced_scales"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById("lesson" + current).style.display = "none";
+            alert("🎉 Advanced Scales Completed!");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

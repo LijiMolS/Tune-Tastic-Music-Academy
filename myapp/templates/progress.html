@@ -1,0 +1,352 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="csrf-token" content="{{ csrf_token }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Piano Free Course | Tune Tastic</title>
+<link rel="stylesheet" href="{% static 'css/progress.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<!-- ================= NAVBAR ================= -->
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark neon-navbar fixed-top">
+  <div class="container-fluid px-2">
+
+    <!-- Logo -->
+    <a class="navbar-brand academy-brand" href="/">
+        <img src="{% static 'images/logo.png' %}" 
+             class="academy-logo"
+             alt="Tune Tastic Logo">
+
+        <div class="brand-text">
+            <span class="academy-name">Tune Tastic</span>
+            <span class="academy-sub">Music Academy</span>
+        </div>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+        <li class="nav-item"><a class="nav-link active" href="/#carousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'subscription' %}">Subscription</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'interactive-exercises' %}">Interactive Exercises</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'live-sessions' %}">Live Sessions</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'progress' %}">Progress</a></li>
+        <!-- Profile -->
+        <li class="nav-item ms-lg-3 profile-wrapper">
+
+        {% if user.is_authenticated %}
+            <button class="profile-btn" id="profileToggle">
+                👤 {{ user.username }} ▾
+            </button>
+
+            <div class="profile-menu" id="profileMenu">
+                <a href="{% url 'profile' %}">View Profile</a>
+                <a href="{% url 'edit_profile' %}">Edit Profile</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+
+        {% else %}
+            <a class="btn btn-primary ms-3" href="{% url 'register' %}">Join Us</a>
+        {% endif %}
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<section id="progress" class="progress-section ">
+
+<div class="container ">
+
+<!-- HEADER -->
+
+<div class="text-center progress-header">
+
+<h2 class="section-title">Your Progress</h2>
+
+<p class="section-subtitle">
+Track your daily practice, unlock achievements, and see your piano and keyboard skills improve step by step. Stay motivated and watch your musical journey come to life.
+</p>
+
+</div>
+
+
+
+<!-- PRACTICE TRACKER -->
+
+<div class="practice-tracker">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h3 class="tracker-title">Practice Tracker</h3>
+
+<p class="tracker-subtext">
+Begin your session, track your practice time, and watch your piano and keyboard skills improve. Stay motivated, set personal goals, and make every practice count toward mastery.
+</p>
+
+</div>
+
+
+<div class="col-lg-6 text-center">
+
+<div class="practice-box">
+
+<h4>Practice Timer</h4>
+
+<div id="practiceTimer">00:00:00</div>
+
+<div class="tracker-buttons">
+
+<button id="startPractice" class="btn start-btn">Start</button>
+
+<button id="stopPractice" class="btn stop-btn">Stop</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- PRACTICE STATS -->
+
+<div class="practice-stats">
+
+<div class="row text-center">
+
+<div class="col-md-4">
+
+<div class="stat-card">
+
+<h4 id="totalPractice">{{ formatted_total }}</h4>
+
+<p>Total Practice</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="stat-card">
+
+<h4 id="weeklyPractice">{{ formatted_weekly }}</h4>
+
+<p>This Week</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="stat-card">
+
+<h4 id="practiceStreak"></h4>
+
+<p>Practice Streak</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+let startTime = localStorage.getItem("startTime");
+let timerInterval = null;
+
+if (startTime && !isNaN(new Date(startTime))) {
+    startTime = new Date(startTime);
+    startTimer();
+} else {
+    localStorage.removeItem("startTime");
+}
+
+// START
+document.getElementById("startPractice")?.addEventListener("click", () => {
+
+    if (startTime) return;
+
+    startTime = new Date();
+    localStorage.setItem("startTime", startTime.toISOString());
+
+    startTimer();
+});
+
+// STOP
+document.getElementById("stopPractice")?.addEventListener("click", async () => {
+
+    if (!startTime) {
+        alert("Click Start first!");
+        return;
+    }
+
+    clearInterval(timerInterval);
+
+    let endTime = new Date();
+    let startObj = new Date(startTime);
+
+    let duration = Math.floor((endTime - startObj) / 1000);
+
+    try {
+        let res = await fetch("{% url 'save_practice' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken()
+            },
+            body: JSON.stringify({
+                duration: duration,
+                start_time: startObj.toISOString(),
+                end_time: endTime.toISOString()
+            })
+        });
+
+        if (!res.ok) throw new Error("Server error");
+
+        let data;
+try {
+    data = await res.json();
+} catch (e) {
+    throw new Error("Invalid JSON response");
+}
+        console.log("FULL DATA:", data);
+
+        // reset
+        localStorage.removeItem("startTime");
+        startTime = null;
+        timerInterval = null;
+
+        // 🔥 SAFE UPDATE - KEYBOARD
+        let kbBar = document.getElementById("keyboardBar");
+        let kbText = document.getElementById("keyboardPercent");
+
+        if (kbBar && kbText && data.keyboard_percent != null) {
+            kbBar.style.width = data.keyboard_percent + "%";
+            kbText.innerText = data.keyboard_percent + "% Completed";
+        }
+
+        // 🔥 SAFE UPDATE - PIANO
+        let pBar = document.getElementById("pianoBar");
+        let pText = document.getElementById("pianoPercent");
+
+        if (pBar && pText && data.piano_percent != null) {
+            pBar.style.width = data.piano_percent + "%";
+            pText.innerText = data.piano_percent + "% Completed";
+        }
+
+        // 🔥 UPDATE TEXT STATS
+        if (data.total_text) {
+            document.getElementById("totalPractice").innerText = data.total_text;
+        }
+
+        if (data.weekly_text) {
+            document.getElementById("weeklyPractice").innerText = data.weekly_text;
+        }
+
+        // streak (temporary logic)
+        document.getElementById("practiceStreak").innerText =
+    `${data.streak || 0} Day${data.streak === 1 ? '' : 's'} `;
+
+        alert("Practice saved successfully!");
+
+    } catch (err) {
+        console.error(err);
+        alert("Something went wrong!");
+    }
+});
+
+// TIMER
+function startTimer() {
+
+    if (timerInterval) return;
+
+    timerInterval = setInterval(() => {
+
+        let now = new Date();
+        let startObj = new Date(startTime);
+
+        let diff = Math.floor((now - startObj) / 1000);
+
+        let hrs = Math.floor(diff / 3600);
+        let mins = Math.floor((diff % 3600) / 60);
+        let secs = diff % 60;
+
+        let el = document.getElementById("practiceTimer");
+
+        if (el) {
+            el.innerText =
+                `${hrs.toString().padStart(2,'0')}:` +
+                `${mins.toString().padStart(2,'0')}:` +
+                `${secs.toString().padStart(2,'0')}`;
+        }
+
+    }, 1000);
+}
+
+// CSRF
+function getCSRFToken() {
+    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const toggle = document.getElementById("profileToggle");
+    const menu = document.getElementById("profileMenu");
+
+    // Toggle dropdown
+    toggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+
+        menu.classList.toggle("show");
+        toggle.classList.toggle("active"); // ⭐ change button color
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+            menu.classList.remove("show");
+            toggle.classList.remove("active"); // ⭐ reset color
+        }
+    });
+
+});
+</script>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

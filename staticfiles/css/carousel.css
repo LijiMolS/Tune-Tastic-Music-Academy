@@ -1,0 +1,195 @@
+/* =====================================================
+   CAROUSEL — SCOPED (WILL NOT AFFECT OTHER CSS)
+===================================================== */
+
+/* --------- Carousel Section Fix ---------- */
+#carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* --------- Carousel Container ---------- */
+#carousel #academyCarousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 700px;
+    min-height: 100vh; /* prevents next section overlap */
+}
+
+@media (max-width: 991px) {
+    #carousel #academyCarousel {
+        height: 500px;
+    }
+}
+
+@media (max-width: 575px) {
+    #carousel #academyCarousel {
+        height: 350px;
+    }
+}
+
+/* --------- Carousel Images ---------- */
+#carousel .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 1.5s ease, filter 1.5s ease, opacity 1.2s ease;
+    will-change: transform;
+}
+
+/* Zoom effect for images */
+#carousel .carousel-item.active img {
+    transform: scale(1.08);
+}
+
+/* --------- Carousel Videos ---------- */
+#carousel .carousel-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 1.5s ease, filter 1.5s ease;
+}
+
+/* Zoom effect for videos */
+#carousel .carousel-item.active .carousel-video {
+    transform: scale(1.08);
+}
+
+/* --------- Glass Caption ---------- */
+#carousel .carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 40px);
+    max-width: 60%;
+    padding: 2rem 2.5rem;
+
+    background: rgba(31, 41, 55, 0.35);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 24px;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.45);
+
+    text-align: center;
+    color: #F8FAFF;
+
+    opacity: 0;
+    transition: all 1s ease-out;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+/* Caption animation */
+#carousel .carousel-item.active .carousel-caption {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* Heading Style */
+#carousel .carousel-caption h2,
+#carousel .carousel-caption h5 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+
+    background: linear-gradient(90deg,#FF7AD9,#C084FC,#7DD3FC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Paragraph */
+#carousel .carousel-caption p {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #E0E7FF;
+}
+
+/* Slide transition caption */
+#carousel .carousel-item-next .carousel-caption,
+#carousel .carousel-item-prev .carousel-caption {
+    transform: translate(-50%, 20px);
+}
+
+/* --------- Carousel Controls ---------- */
+#carousel .carousel-control-prev-icon,
+#carousel .carousel-control-next-icon {
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.6));
+}
+
+/* --------- Indicators ---------- */
+#carousel .carousel-indicators button {
+    background-color: rgba(255,255,255,0.6);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+#carousel .carousel-indicators .active {
+    background-color: #ffffff;
+    transform: scale(1.2);
+}
+
+/* --------- Responsive ---------- */
+@media (max-width: 991px) {
+
+    #carousel .carousel-caption {
+        max-width: 80%;
+        padding: 1.5rem 2rem;
+    }
+
+    #carousel .carousel-caption h2,
+    #carousel .carousel-caption h5 {
+        font-size: 1.8rem;
+    }
+
+    #carousel .carousel-caption p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 575px) {
+
+    #carousel .carousel-caption {
+        max-width: 90%;
+        padding: 1rem 1.5rem;
+    }
+
+    #carousel .carousel-caption h2,
+    #carousel .carousel-caption h5 {
+        font-size: 1.5rem;
+    }
+
+    #carousel .carousel-caption p {
+        font-size: 0.85rem;
+    }
+}
+
+/* --------- Background Music Button ---------- */
+.music-btn{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: none;
+    padding: 10px 18px;
+    border-radius: 30px;
+
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.music-btn:hover{
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.4);
+}

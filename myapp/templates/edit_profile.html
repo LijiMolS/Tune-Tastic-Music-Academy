@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Profile | Tune Tastic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #FF7AD9, #C084FC);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: #000;
+}
+
+/* Glassy card container */
+.register-box {
+    max-width: 450px;
+    width: 90%;
+    padding: 35px 2rem;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 2px solid rgba(255,255,255,0.25);
+    box-shadow: 0 20px 40px rgba(136,38,149,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* even vertical spacing between fields */
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.register-box:hover {
+    transform: translateY(-15px) scale(1.01);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeInUp {
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.register-box h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.register-box p {
+    font-size: 1rem;
+    color: #000;
+    opacity: 0.85;
+    margin-bottom: 10px;
+}
+
+/* Profile Pic */
+.profile-pic-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.6);
+    box-shadow: 0 6px 18px rgba(255,255,255,0.15);
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.profile-pic-preview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(255,255,255,0.25);
+}
+
+/* Input Fields */
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* even 10px spacing between inputs */
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.2);
+    color: #000;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #A855F7;
+    box-shadow: 0 0 10px rgba(168,85,247,0.3);
+}
+
+/* File input hidden and label styled as button */
+.input-group input[type="file"] {
+    display: none;
+}
+
+.input-group label.btn-register {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #FF63C4, #A855F7);
+    color: #000;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(168,85,247,0.25);
+    transition: all 0.35s ease;
+}
+
+.input-group label.btn-register:hover {
+    background: #111;
+    color: #FF7AD9;
+    box-shadow: 0 8px 22px rgba(168,85,247,0.3);
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Buttons row using Profile page style */
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.button-row .btn-register {
+    flex: 1;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem; /* smaller padding */
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #FF63C4, #A855F7);
+    color: #000000;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(168,85,247,0.25);
+    transition: all 0.35s ease;
+}
+
+.button-row .btn-register:hover {
+    background: #111;
+    color: #FF7AD9;
+    box-shadow: 0 8px 22px rgba(168,85,247,0.3);
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .register-box { padding: 30px 1.8rem; }
+    .profile-pic-preview { width: 110px; height: 110px; }
+    .register-box h2 { font-size: 1.7rem; }
+}
+
+@media (max-width: 480px) {
+    .button-row { flex-direction: column; }
+    .button-row .btn-register, .input-group label.btn-register { max-width: 100%; font-size: 0.85rem; }
+}
+/* Input Groups */
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* <-- Add this to create space between inputs */
+    margin-top: 15px; /* optional top spacing */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.2);
+    color: #000;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 10px rgba(192,132,252,0.3);
+}
+</style>
+</head>
+<body>
+
+<div class="register-box">
+
+<!-- Profile Pic -->
+<div style="text-align:center;">
+    {% if profile.profile_pic %}
+        <img src="{{ profile.profile_pic.url }}" class="profile-pic-preview" alt="Profile Picture">
+    {% else %}
+        <img src="{% static 'images/default-profile.png' %}" class="profile-pic-preview" alt="Profile Picture">
+    {% endif %}
+</div>
+
+<h2>Edit Profile</h2>
+<p>Update your account information below:</p>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- Choose File Button -->
+    <div class="input-group">
+        <label for="profile_pic" class="btn-register">Choose Profile Picture</label>
+        <input type="file" name="profile_pic" id="profile_pic">
+    </div>
+
+    <div class="input-group">
+        <input type="text" name="username" value="{{ request.user.username }}" placeholder="Username" required>
+    </div>
+
+    <div class="input-group">
+        <input type="email" name="email" value="{{ request.user.email }}" placeholder="Email" required>
+    </div>
+
+    <div class="input-group">
+        <input type="password" name="password1" placeholder="New Password (optional)">
+    </div>
+
+    <div class="input-group">
+        <input type="password" name="password2" placeholder="Confirm New Password (optional)">
+    </div>
+
+    <!-- Buttons Row -->
+    <div class="button-row">
+        <button type="submit" class="btn-register">Save Changes</button>
+        <a href="{% url 'profile' %}" class="btn-register">Back to Profile</a>
+    </div>
+</form>
+</div>
+
+</body>
+</html>

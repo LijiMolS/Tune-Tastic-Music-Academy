@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Tune Tastic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <div class="register-box">
+        <h2>Login</h2>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Add onsubmit fallback to ensure form submits -->
+        <form method="POST" onsubmit="return true;">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <!-- Make sure type="submit" is present -->
+            <button type="submit" class="btn-register">Login</button>
+        </form>
+
+        <p class="login-link">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+    </div>
+
+    <!-- Optional: make sure no JS blocks button -->
+    <script>
+        const btn = document.querySelector('.btn-register');
+        btn.addEventListener('click', function(e){
+            // ensures default submit works
+            this.closest('form').submit();
+        });
+    </script>
+</body>
+</html>

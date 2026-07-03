@@ -1,0 +1,369 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Piano Free Course | Tune Tastic</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/Keyboard-free.css' %}">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark neon-navbar fixed-top">
+  <div class="container-fluid px-2">
+
+    <!-- Logo -->
+    <a class="navbar-brand academy-brand" href="/">
+        <img src="{% static 'images/logo.png' %}" 
+             class="academy-logo"
+             alt="Tune Tastic Logo">
+
+        <div class="brand-text">
+            <span class="academy-name">Tune Tastic</span>
+            <span class="academy-sub">Music Academy</span>
+        </div>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        
+<li class="nav-item"><a class="nav-link active" href="/#carousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'subscription' %}">Subscription</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'interactive-exercises' %}">Interactive Exercises</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'live-sessions' %}">Live Sessions</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'progress' %}">Progress</a></li>
+        <!-- Profile -->
+        <li class="nav-item ms-lg-3 profile-wrapper">
+
+        {% if user.is_authenticated %}
+            <button class="profile-btn" id="profileToggle">
+                👤 {{ user.username }} ▾
+            </button>
+
+            <div class="profile-menu" id="profileMenu">
+                <a href="{% url 'profile' %}">View Profile</a>
+                <a href="{% url 'edit_profile' %}">Edit Profile</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+
+        {% else %}
+            <a class="btn btn-primary ms-3" href="{% url 'register' %}">Join Us</a>
+        {% endif %}
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary-pink: #FF7AD9;
+    --primary-purple: #C084FC;
+    --primary-blue: #7DD3FC;
+}
+
+/* BODY */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+/* ===================================================
+KEYBOARD FREE COURSE PAGE
+=================================================== */
+
+.course-header{
+
+padding-top:120px;
+padding-bottom:60px;
+
+text-align:center;
+
+background:linear-gradient(
+135deg,
+#F8FAFF,
+#EEF2FF,
+#FDF4FF
+);
+
+}
+
+.course-title{
+
+font-size:46px;
+font-weight:900;
+
+background:linear-gradient(
+90deg,
+var(--primary-pink),
+var(--primary-purple),
+var(--primary-blue)
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+.course-sub{
+
+max-width:650px;
+margin:auto;
+
+margin-top:10px;
+margin-bottom:30px;
+
+color:var(--text-soft);
+
+}
+
+.back-btn{
+
+display:inline-block;
+
+padding:10px 24px;
+
+border-radius:30px;
+
+background:linear-gradient(
+45deg,
+var(--primary-pink),
+var(--primary-purple)
+);
+
+color:white;
+text-decoration:none;
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.back-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 8px 20px rgba(192,132,252,0.35);
+
+}
+
+
+/* LESSON GRID */
+
+.lesson-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+
+/* LESSON CARD */
+
+.lesson-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 12px 35px rgba(0,0,0,0.08);
+
+transition:.3s;
+
+position:relative;
+
+}
+
+.lesson-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 20px 45px rgba(0,0,0,0.12);
+
+}
+
+
+/* LESSON NUMBER */
+
+
+
+/* TITLE */
+
+.lesson-card h3{
+
+color:rgb(215, 130, 203);
+text-decoration:none;
+font-weight:700;
+margin-bottom:10px;
+
+}
+
+
+/* TEXT */
+
+.lesson-card p{
+
+font-size:14px;
+color:var(--text-soft);
+
+margin-bottom:15px;
+
+}
+
+
+/* LIST */
+
+.lesson-card ul{
+
+padding-left:18px;
+margin-bottom:20px;
+
+}
+
+.lesson-card li{
+
+margin-bottom:6px;
+font-size:14px;
+
+}
+
+
+/* BUTTON */
+
+.lesson-btn{
+
+display:inline-block;
+
+padding:10px 22px;
+
+border-radius:30px;
+
+background:linear-gradient(
+45deg,
+var(--primary-pink),
+var(--primary-purple)
+);
+
+color:white;
+text-decoration:none;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.lesson-btn:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 8px 20px rgba(192,132,252,0.35);
+
+}
+
+</style>
+<!-- HEADER -->
+<div class="course-header">
+    <h1 class="course-title">Live Sessions</h1>
+    <p class="course-sub">
+        Join interactive live music classes with expert instructors.
+        Learn, practice, and grow in real-time
+    </p>
+
+    <a href="{% url 'courses' %}" class="back-btn">← Back to Courses</a>
+</div>
+
+
+<!-- SESSION GRID -->
+<div class="container">
+
+<div class="lesson-grid">
+
+{% for session in sessions %}
+
+<div class="lesson-card">
+
+    <!-- STATUS ICON -->
+    <div >
+        {% if session.status == "live" %}
+            🔴
+        {% elif session.status == "upcoming" %}
+            🟡
+        {% else %}
+            ⚫
+        {% endif %}
+    </div>
+
+    <!-- TITLE -->
+    <h3>{{ session.title }}</h3>
+
+    <!-- DETAILS -->
+    <p><strong>Instructor:</strong> {{ session.instructor.username }}</p>
+    <p><strong>Time:</strong> {{ session.start_time }}</p>
+
+    <!-- STATUS TEXT -->
+    {% if session.status == "live" %}
+        <p style="color:rgb(243, 38, 233); font-weight:600;">LIVE NOW</p>
+    {% elif session.status == "upcoming" %}
+        <p style="color:rgb(243, 38, 233); font-weight:600;">STARTING SOON</p>
+    {% else %}
+        <p style="color:rgb(243, 38, 233); font-weight:600;">SESSION ENDED</p>
+    {% endif %}
+
+    <!-- BUTTON -->
+    <a href="{% url 'session_detail' session.id %}" class="lesson-btn">
+        View Session
+    </a>
+
+</div>
+
+{% empty %}
+
+<p style="text-align:center; margin-top:40px;">
+    No sessions available right now 😕
+</p>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+/* ===================================================
+KEYBOARD FREE COURSE PAGE — FULL SCREEN, NO SCROLL
+=================================================== */
+
+/* HTML & BODY */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden; /* remove scrollbar */
+    background: linear-gradient(135deg, #F8FAFF, #EEF2FF, #FDF4FF);
+}
+
+/* PAGE FLEX LAYOUT */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* COURSE HEADER */
+.course-header {
+    padding-top: 120px;
+    padding-bottom: 60px;
+    text-align: center;
+    flex: 0 0 auto; /* fixed height */
+}
+
+.course-title {
+    font-size: 46px;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-purple), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.course-sub {
+    max-width: 650px;
+    margin: 10px auto 30px auto;
+    font-size: 14px;
+    color: var(--text-soft);
+}
+
+/* BACK BUTTON */
+.back-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 30px;
+    background: linear-gradient(45deg, var(--primary-pink), var(--primary-purple));
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(192,132,252,0.35);
+}
+
+/* LESSON GRID — fills remaining height */
+.lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+    flex: 1 1 auto; /* fills remaining space of body */
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-content: stretch; /* stretch grid to fill height */
+    overflow: hidden; /* hide internal scroll */
+}
+
+/* LESSON CARD */
+.lesson-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    transition: .3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* cards stretch nicely */
+}
+
+.lesson-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+}
+
+/* LESSON NUMBER */
+.lesson-number {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* CARD TITLE */
+.lesson-card h3 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* CARD TEXT */
+.lesson-card p {
+    font-size: 14px;
+    color: var(--text-soft);
+    margin-bottom: 15px;
+}
+
+/* LIST */
+.lesson-card ul {
+    padding-left: 18px;
+    margin-bottom: 20px;
+}
+
+.lesson-card li {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+/* LESSON BUTTON */
+.lesson-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: linear-gradient(45deg, var(--primary-pink), var(--primary-purple));
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.lesson-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(192,132,252,0.35);
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+    .lesson-grid {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 575px) {
+    .course-title {
+        font-size: 36px;
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.lesson-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    transition: .3s;
+    position: relative;
+
+    /* Add animation */
+    opacity: 0;                  /* start hidden */
+    animation: fadeInUp 0.6s forwards;
+    animation-delay: 0.2s;       /* you can change delay per card */
+}

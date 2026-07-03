@@ -1,0 +1,77 @@
+<section id="contact-section">
+  <div class="contact-box">
+    <h2>Contact Us</h2>
+    <p class="contact-sub">Have questions? Send us a quick message</p>
+
+    <!-- ✅ Success Message -->
+    <div id="contact-success" style="display:none; color:rgb(198, 53, 214); margin-bottom:10px;">
+       Your message has been sent. We'll get back to you soon!
+    </div>
+
+    <!-- ❌ Optional Error Message -->
+    <div id="contact-error" style="display:none; color:red; margin-bottom:10px;">
+       Something went wrong. Please try again!
+    </div>
+
+    <form id="contact-form" class="mini-contact-form">
+      {% csrf_token %}
+      <input type="text" name="name" placeholder="Your Name" required class="contact-input">
+      <input type="email" name="email" placeholder="Your Email" required class="contact-input">
+      <input type="text" name="subject" placeholder="Subject (Optional)" class="contact-input">
+      <textarea name="message" rows="4" placeholder="Your Message" required class="contact-textarea"></textarea>
+      <button type="submit" class="contact-button">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    const successDiv = document.getElementById('contact-success');
+    const errorDiv = document.getElementById('contact-error');
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        const button = form.querySelector("button");
+        button.disabled = true;
+        button.innerText = "Sending...";
+
+        // hide old messages
+        successDiv.style.display = 'none';
+        errorDiv.style.display = 'none';
+
+        const formData = new FormData(form);
+
+        fetch("{% url 'contact_message' %}", {
+            method: "POST",
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                successDiv.style.display = 'block';
+                form.reset();
+            } else {
+                errorDiv.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            errorDiv.style.display = 'block';
+        })
+        .finally(() => {
+            button.disabled = false;
+            button.innerText = "Send Message";
+        });
+    });
+
+});
+</script>

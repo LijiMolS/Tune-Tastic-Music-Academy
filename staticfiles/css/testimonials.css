@@ -1,0 +1,67 @@
+/* =====================================================
+   TESTIMONIALS SECTION — NEON GLASS STYLE
+===================================================== */
+
+/* Section Container */
+.testimonials-section {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    /* Correct background image path for CSS file */
+    background: url("/static/images/interactive-bg.jpg") no-repeat center center;
+    background-size: cover;          /* Cover entire container */
+    background-attachment: fixed;    /* Optional: parallax effect */
+    color: #000; /* main text black */
+}
+
+/* Section Title & Subtitle */
+.testimonials-section .section-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+}
+.testimonials-section .section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    color: #000;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: auto;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.35s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* Student Image */
+.testimonial-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+/* Student Name */
+.testimonial-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Testimonial Text */
+.testimonial-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000;
+}

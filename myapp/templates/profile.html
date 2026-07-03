@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Profile | Tune Tastic</title>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #FF7AD9, #C084FC);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: #000; /* black text */
+}
+
+/* Glassy card container */
+.register-box {
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    padding: 30px 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 2px solid rgba(255,255,255,0.25);
+    box-shadow: 0 20px 40px rgba(136, 38, 149, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.register-box:hover {
+    transform: translateY(-15px) scale(1.01);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeInUp {
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Heading */
+.register-box h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #000; /* black heading */
+    margin-bottom: 15px;
+}
+
+/* Profile picture */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.6);
+    box-shadow: 0 6px 18px rgba(255,255,255,0.15);
+    transition: all 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(255,255,255,0.25);
+}
+
+/* Info table */
+table {
+    margin: 0 auto;
+    text-align: left;
+    width: 90%;
+    max-width: 400px;
+    border-collapse: collapse;
+    color: #000; /* black table text */
+}
+
+td {
+    padding: 8px 6px;
+    font-weight: 500;
+}
+
+/* Buttons using Payment page style – smaller size */
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.button-row a.btn-register {
+    flex: 1;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem; /* smaller padding */
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #FF63C4, #A855F7);
+    color: #000000;
+    font-weight: 600;
+    font-size: 0.9rem; /* slightly smaller text */
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(168,85,247,0.25);
+    transition: all 0.35s ease;
+}
+
+.button-row a.btn-register:hover {
+    background: #111;
+    color: #FF7AD9;
+    box-shadow: 0 8px 22px rgba(168,85,247,0.3);
+    transform: translateY(-2px) scale(1.02); /* subtle hover effect */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .register-box { padding: 25px 1.5rem; }
+    .profile-img { width: 130px; height: 130px; }
+    .register-box h2 { font-size: 1.7rem; }
+}
+
+@media (max-width: 480px) {
+    .button-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="register-box">
+
+<img 
+    src="{% if request.user.profile.profile_pic %}{{ request.user.profile.profile_pic.url }}{% else %}{% static 'images/default-profile.png' %}{% endif %}" 
+    class="profile-img" 
+    alt="Profile Picture">
+
+<h2>Welcome {{ request.user.username }}</h2>
+
+<table>
+    <tr><td>📧 Email</td><td>:</td><td>{{ request.user.email }}</td></tr>
+    <tr><td>📅 Joined On</td><td>:</td><td>{{ request.user.date_joined|date:"F d, Y" }}</td></tr>
+    <tr><td>⏰ Joined Time</td><td>:</td><td>{{ request.user.date_joined|time:"h:i A" }}</td></tr>
+    <tr><td>🕒 Last Login</td><td>:</td><td>{{ request.user.last_login|date:"F d, Y h:i A" }}</td></tr>
+    <tr><td>🎵 Membership</td><td>:</td><td>{{ request.user.profile.get_membership_display }}</td></tr>
+</table>
+
+<div class="button-row">
+    <a href="{% url 'edit_profile' %}" class="btn-register">Edit Profile</a>
+    <a href="{% url 'index' %}" class="btn-register">Back to Home</a>
+    <a href="{% url 'logout' %}" class="btn-register">Logout</a>
+</div>
+
+</div>
+</body>
+</html>

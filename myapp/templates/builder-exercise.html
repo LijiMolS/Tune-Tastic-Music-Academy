@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chord & Melody Builder</title>
+<link rel="stylesheet" href="{% static 'css/builder.css' %}">
+</head>
+<body>
+
+<section class="ear-header">
+    <h1>Chord & Melody Builder</h1>
+    <p>Complete all exercises to test your music skills</p>
+</section>
+
+<section class="carousel-container">
+
+<!-- 1️⃣ MATCH -->
+<div class="exercise-card" data-type="mcq" data-answer="C Major">
+  <h2>Exercise 1: Match Melody with Chord</h2>
+  <p><b>Melody:</b> C – D – E – G – E – D – C</p>
+  <p>Which chord best fits this melody?</p>
+
+  <div class="choices">
+    <button class="answer-btn" data-choice="C Major">C Major</button>
+    <button class="answer-btn" data-choice="F Major">F Major</button>
+    <button class="answer-btn" data-choice="G Major">G Major</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 2️⃣ BUILD -->
+<div class="exercise-card" data-type="select" data-answer="C,E,G">
+  <h2>Exercise 2: Build Melody from Chord</h2>
+  <p><b>Chord:</b> C Major (C-E-G)</p>
+  <p>Select notes to create a melody (use mostly chord notes)</p>
+
+  <div class="choices">
+    <button class="note-btn" data-note="C">C</button>
+    <button class="note-btn" data-note="D">D</button>
+    <button class="note-btn" data-note="E">E</button>
+    <button class="note-btn" data-note="F">F</button>
+    <button class="note-btn" data-note="G">G</button>
+  </div>
+
+  <button class="check-btn">Check</button>
+  <div class="feedback"></div>
+</div>
+
+<!-- 3️⃣ FILL -->
+<div class="exercise-card" data-type="mcq" data-answer="G">
+  <h2>Exercise 3: Fill Missing Melody</h2>
+  <p><b>Chord:</b> C</p>
+  <p>Melody: C – E – ?</p>
+  <p>Choose the best note</p>
+
+  <div class="choices">
+    <button class="answer-btn" data-choice="F">F</button>
+    <button class="answer-btn" data-choice="G">G</button>
+    <button class="answer-btn" data-choice="A">A</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 4️⃣ RHYTHM -->
+<div class="exercise-card" data-type="select" data-answer="G,B,D">
+  <h2>Exercise 4: Rhythm Melody</h2>
+  <p><b>Chord:</b> G Major</p>
+  <p>Rhythm: Ta – Ta – Taaa – Ta</p>
+  <p>Build melody using correct notes</p>
+
+  <div class="choices">
+    <button class="note-btn" data-note="G">G</button>
+    <button class="note-btn" data-note="A">A</button>
+    <button class="note-btn" data-note="B">B</button>
+    <button class="note-btn" data-note="D">D</button>
+  </div>
+
+  <button class="check-btn">Check</button>
+  <div class="feedback"></div>
+</div>
+
+<!-- 5️⃣ CREATIVE -->
+<div class="exercise-card" data-type="select" data-answer="C,E,G">
+  <h2>Exercise 5: Creative Melody</h2>
+  <p><b>Chord:</b> C Major</p>
+  <p>Create your own melody using chord notes</p>
+
+  <div class="choices">
+    <button class="note-btn" data-note="C">C</button>
+    <button class="note-btn" data-note="E">E</button>
+    <button class="note-btn" data-note="G">G</button>
+    <button class="note-btn" data-note="A">A</button>
+  </div>
+
+  <button class="check-btn">Check</button>
+  <div class="feedback"></div>
+</div>
+
+<!-- 6 -->
+<div class="exercise-card" data-type="mcq" data-answer="G Major">
+  <h2>Exercise 6: Match Melody</h2>
+  <p><b>Melody:</b> G – A – B – D</p>
+  <p>Which chord matches?</p>
+
+  <div class="choices">
+    <button class="answer-btn" data-choice="C Major">C Major</button>
+    <button class="answer-btn" data-choice="G Major">G Major</button>
+    <button class="answer-btn" data-choice="F Major">F Major</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 7 -->
+<div class="exercise-card" data-type="mcq" data-answer="C">
+  <h2>Exercise 7: Fill Missing Note</h2>
+  <p><b>Chord:</b> F</p>
+  <p>Melody: F – A – ?</p>
+
+  <div class="choices">
+    <button class="answer-btn" data-choice="C">C</button>
+    <button class="answer-btn" data-choice="D">D</button>
+    <button class="answer-btn" data-choice="E">E</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 8 -->
+<div class="exercise-card" data-type="select" data-answer="F,A,C">
+  <h2>Exercise 8: Build Melody</h2>
+  <p><b>Chord:</b> F Major</p>
+  <p>Select correct notes</p>
+
+  <div class="choices">
+   <button class="note-btn" data-note="F">F</button>
+<button class="note-btn" data-note="A">A</button>
+<button class="note-btn" data-note="C">C</button>
+<button class="note-btn" data-note="D">D</button>
+  </div>
+
+  <button class="check-btn">Check</button>
+  <div class="feedback"></div>
+</div>
+
+<!-- 9 -->
+<div class="exercise-card" data-type="mcq" data-answer="A minor">
+  <h2>Exercise 9: Identify Chord</h2>
+  <p><b>Melody:</b> A – C – E</p>
+  <p>Choose the correct chord</p>
+
+  <div class="choices">
+    <button class="answer-btn" data-choice="C Major">C Major</button>
+<button class="answer-btn" data-choice="A minor">A minor</button>
+<button class="answer-btn" data-choice="G Major">G Major</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 10 -->
+<div class="exercise-card" data-type="select" data-answer="G,B,D">
+  <h2>Exercise 10: Final Creative Task</h2>
+  <p><b>Chord:</b> G Major</p>
+  <p>Create a melody</p>
+
+  <div class="choices">
+    <button class="note-btn" data-note="G">G</button>
+<button class="note-btn" data-note="B">B</button>
+<button class="note-btn" data-note="D">D</button>
+<button class="note-btn" data-note="A">A</button>
+  </div>
+
+  <button class="check-btn">Check</button>
+  <div class="feedback"></div>
+</div>
+
+</section>
+
+<section class="progress-section">
+    <h2>Progress Tracker</h2>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: 0%;"></div>
+    </div>
+    <p class="score-display">Score: 0 / 10</p>
+</section>
+
+<script src="{% static 'js/builder.js' %}"></script>
+</body>
+</html>

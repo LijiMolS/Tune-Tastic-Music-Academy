@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>helpcenter | Tune Tastic</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/terms_of_service.css' %}">
+
+</head>
+
+<body>
+<!-- NAVBAR -->
+<section id="index">
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark neon-navbar fixed-top">
+  <div class="container-fluid px-2">
+
+    <!-- Logo -->
+    <a class="navbar-brand academy-brand" href="#">
+        <img src="{% static 'images/logo.png' %}" 
+             class="academy-logo"
+             alt="Tune Tastic Logo">
+
+        <div class="brand-text">
+            <span class="academy-name">Tune Tastic</span>
+            <span class="academy-sub">Music Academy</span>
+        </div>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+        <li class="nav-item"><a class="nav-link active" href="/#carousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'subscription' %}">Subscription</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'interactive-exercises' %}">Interactive Exercises</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'live-sessions' %}">Live Sessions</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'progress' %}">Progress</a></li>
+<!-- Custom Profile Dropdown -->
+<li class="nav-item ms-lg-3 profile-wrapper">
+
+    {% if user.is_authenticated %}
+    <button class="profile-btn" id="profileToggle">
+        👤 {{ user.username }} ▾
+    </button>
+
+    <div class="profile-menu" id="profileMenu">
+        <a href="{% url 'profile' %}">View Profile</a>
+        <a href="{% url 'edit_profile' %}">Edit Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    {% else %}
+        <a class="btn btn-primary ms-3" href="{% url 'register' %}">Join Us</a>
+    {% endif %}
+
+</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/terms_of_service.css' %}">
+{% endblock %}
+
+{% block content %}
+<section id="help-center">
+  <div class="help-box">
+    <h1>Terms of Service</h1>
+    <p class="help-sub">Please read these terms carefully before using Tune Tastic Music Academy services.</p>
+
+    <!-- 1. Acceptance of Terms -->
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing or using Tune Tastic Music Academy, you agree to comply with these Terms of Service and all applicable laws. If you do not agree, please do not use our services.</p>
+
+    <!-- 2. Account Responsibility -->
+    <h2>2. Account Responsibility</h2>
+    <p>You are responsible for maintaining the confidentiality of your account credentials. Any activity under your account is your responsibility.</p>
+
+    <!-- 3. Course Enrollment -->
+    <h2>3. Course Enrollment</h2>
+    <p>Enrollment in courses is subject to availability and subscription plans. Free courses are accessible immediately, while paid courses require successful payment.</p>
+
+    <!-- 4. Payments and Refunds -->
+    <h2>4. Payments and Refunds</h2>
+    <p>All payments must be completed via the authorized payment gateway. Refunds are provided only as described in our Refund Policy.</p>
+
+    <!-- 5. Intellectual Property -->
+    <h2>5. Intellectual Property</h2>
+    <p>All content, including videos, documents, and exercises, are the intellectual property of Tune Tastic Music Academy. You may not distribute, copy, or sell any content without permission.</p>
+
+    <!-- 6. User Conduct -->
+    <h2>6. User Conduct</h2>
+    <p>Users must not engage in harassment, abuse, or infringement of others' rights. Any violation may result in account suspension or termination.</p>
+
+    <!-- 7. Termination of Access -->
+    <h2>7. Termination of Access</h2>
+    <p>Tune Tastic Music Academy may suspend or terminate accounts that violate these Terms or for any reason at our discretion.</p>
+
+    <!-- 8. Limitation of Liability -->
+    <h2>8. Limitation of Liability</h2>
+    <p>We are not responsible for any indirect, incidental, or consequential damages arising from your use of our services.</p>
+
+    <!-- 9. Privacy -->
+    <h2>9. Privacy</h2>
+    <p>Your use of Tune Tastic Music Academy is subject to our Privacy Policy. We are committed to protecting your personal information.</p>
+
+    <!-- 10. Modifications -->
+    <h2>10. Modifications to Terms</h2>
+    <p>We may update these Terms of Service from time to time. Changes will be posted on this page, and continued use of the platform constitutes acceptance of the new terms.</p>
+  </div>
+</section>
+{% endblock %}
+</body>
+</html>

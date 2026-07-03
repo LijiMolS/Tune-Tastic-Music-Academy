@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rhythm Challenges</title>
+<link rel="stylesheet" href="{% static 'css/builder.css' %}">
+</head>
+<body>
+
+<section class="ear-header">
+    <h1>Rhythm Challenges</h1>
+    <p>Tap in time and improve your timing and coordination</p>
+</section>
+
+<section class="carousel-container">
+
+<!-- 1️⃣ Basic Beat -->
+<div class="exercise-card" data-type="mcq" data-answer="Ta – Ta – Ta – Ta">
+  <h2>Exercise 1: Basic Beat</h2>
+  <p>Tap along the pattern:</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Ta – Ta – Ta – Ta">Ta – Ta – Ta – Ta</button>
+    <button class="answer-btn" data-choice="Ta – Ta – Taaa – Ta">Ta – Ta – Taaa – Ta</button>
+    <button class="answer-btn" data-choice="Ta – (rest) – Ta – Ta">Ta – (rest) – Ta – Ta</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 2️⃣ Long Beat -->
+<div class="exercise-card" data-type="mcq" data-answer="Ta – Ta – Taaa – Ta">
+  <h2>Exercise 2: Long Beat</h2>
+  <p>Third beat should be held longer</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Ta – Ta – Ta – Ta">Ta – Ta – Ta – Ta</button>
+    <button class="answer-btn" data-choice="Ta – Ta – Taaa – Ta">Ta – Ta – Taaa – Ta</button>
+    <button class="answer-btn" data-choice="Ta – (rest) – Ta – Ta">Ta – (rest) – Ta – Ta</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 3️⃣ Alternate Hands -->
+<div class="exercise-card" data-type="mcq" data-answer="R – L – R – L">
+  <h2>Exercise 3: Alternate Hands</h2>
+  <p>Right and Left hand tapping</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="R – L – R – L">R – L – R – L</button>
+    <button class="answer-btn" data-choice="L – R – L – R">L – R – L – R</button>
+    <button class="answer-btn" data-choice="R – R – L – L">R – R – L – L</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 4️⃣ Gap Rhythm -->
+<div class="exercise-card" data-type="mcq" data-answer="Ta – (rest) – Ta – Ta">
+  <h2>Exercise 4: Gap Rhythm</h2>
+  <p>Second beat is silent</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Ta – Ta – Ta – Ta">Ta – Ta – Ta – Ta</button>
+    <button class="answer-btn" data-choice="Ta – (rest) – Ta – Ta">Ta – (rest) – Ta – Ta</button>
+    <button class="answer-btn" data-choice="Ta – Taaa – Ta – Ta">Ta – Taaa – Ta – Ta</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 5️⃣ Copy Rhythm -->
+<div class="exercise-card" data-type="mcq" data-answer="Ta – Ta – Taaa – Ta – Ta">
+  <h2>Exercise 5: Copy Rhythm</h2>
+  <p>Watch the pattern and select the correct sequence</p>
+  <div class="visual-rhythm">
+  <span class="beat">Ta</span>
+  <span class="beat">Ta</span>
+  <span class="beat long">Taaa</span>
+  <span class="beat">Ta</span>
+  <span class="beat">Ta</span>
+</div>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Ta – Ta – Taaa – Ta – Ta">Ta – Ta – Taaa – Ta – Ta</button>
+    <button class="answer-btn" data-choice="Ta – Taaa – Ta – Ta – Ta">Ta – Taaa – Ta – Ta – Ta</button>
+    <button class="answer-btn" data-choice="Ta – Ta – Ta – Ta – Ta">Ta – Ta – Ta – Ta – Ta</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 6️⃣ Foot + Hand Combo -->
+<div class="exercise-card" data-type="mcq" data-answer="Foot: 1-2-3-4; Hand: 2 & 4">
+  <h2>Exercise 6: Foot + Hand Combo</h2>
+  <p>Foot taps on 1-2-3-4, hands clap on 2 & 4</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Foot: 1-2-3-4; Hand: 2 & 4">Foot: 1-2-3-4; Hand: 2 & 4</button>
+    <button class="answer-btn" data-choice="Foot: 1-2-3-4; Hand: 1 & 3">Foot: 1-2-3-4; Hand: 1 & 3</button>
+    <button class="answer-btn" data-choice="Foot: 1-2-3; Hand: 2 & 4">Foot: 1-2-3; Hand: 2 & 4</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 7️⃣ Speed Challenge Slow -->
+<div class="exercise-card" data-type="mcq" data-answer="Slow (60 BPM)">
+  <h2>Exercise 7: Speed Challenge - Slow</h2>
+  <p>Tap the same pattern at slow speed</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Slow (60 BPM)">Slow (60 BPM)</button>
+    <button class="answer-btn" data-choice="Medium (90 BPM)">Medium (90 BPM)</button>
+    <button class="answer-btn" data-choice="Fast (120 BPM)">Fast (120 BPM)</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 8️⃣ Speed Challenge Medium -->
+<div class="exercise-card" data-type="mcq" data-answer="Medium (90 BPM)">
+  <h2>Exercise 8: Speed Challenge - Medium</h2>
+  <p>Tap the same pattern at medium speed</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Slow (60 BPM)">Slow (60 BPM)</button>
+    <button class="answer-btn" data-choice="Medium (90 BPM)">Medium (90 BPM)</button>
+    <button class="answer-btn" data-choice="Fast (120 BPM)">Fast (120 BPM)</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 9️⃣ Speed Challenge Fast -->
+<div class="exercise-card" data-type="mcq" data-answer="Fast (120 BPM)">
+  <h2>Exercise 9: Speed Challenge - Fast</h2>
+  <p>Tap the same pattern at fast speed</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Slow (60 BPM)">Slow (60 BPM)</button>
+    <button class="answer-btn" data-choice="Medium (90 BPM)">Medium (90 BPM)</button>
+    <button class="answer-btn" data-choice="Fast (120 BPM)">Fast (120 BPM)</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+<!-- 10️⃣ Final Challenge -->
+<div class="exercise-card" data-type="mcq" data-answer="Ta – (rest) – Ta – Taaa – Ta">
+  <h2>Exercise 10: Final Challenge</h2>
+  <p>Create your own rhythm based on the pattern</p>
+  <div class="choices">
+    <button class="answer-btn" data-choice="Ta – (rest) – Ta – Taaa – Ta">Ta – (rest) – Ta – Taaa – Ta</button>
+    <button class="answer-btn" data-choice="Ta – Ta – Taaa – Ta – Ta">Ta – Ta – Taaa – Ta – Ta</button>
+    <button class="answer-btn" data-choice="Ta – Ta – Ta – Ta – Ta">Ta – Ta – Ta – Ta – Ta</button>
+  </div>
+  <div class="feedback"></div>
+</div>
+
+</section>
+
+<section class="progress-section">
+    <h2>Progress Tracker</h2>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: 0%;"></div>
+    </div>
+    <p class="score-display">Score: 0 / 10</p>
+</section>
+
+<script src="{% static 'js/rhythm_challenges.js' %}"></script>
+</body>
+</html>

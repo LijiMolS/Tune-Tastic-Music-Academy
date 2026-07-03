@@ -1,0 +1,47 @@
+{% load static %}
+
+<!-- ==============================
+   TESTIMONIALS SECTION
+=============================== -->
+<section id="testimonials" class="testimonials-section text-center">
+    <div class="container">
+        <!-- Section Title -->
+        <h2 class="section-title">What Our Students Say</h2>
+        <p class="section-subtitle">Hear from our learners who are mastering music with us</p>
+
+        <!-- Testimonial Cards -->
+        <div class="row justify-content-center mt-4">
+            <!-- Testimonial 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <img src="{% static 'images/student1.jpg' %}" alt="Student 1" class="testimonial-img">
+                    <h4 class="testimonial-name">Oliver R.</h4>
+                    <p class="testimonial-text">“Tune Tastic improved my skills! The interactive exercises are amazing.”</p>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <img src="{% static 'images/student2.jpg' %}" alt="Student 2" class="testimonial-img">
+                    <h4 class="testimonial-name">Edward M.</h4>
+                    <p class="testimonial-text">“The live sessions are very engaging, and the teachers are super supportive.”</p>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <img src="{% static 'images/student3.jpg' %}" alt="Student 3" class="testimonial-img">
+                    <h4 class="testimonial-name">Amelia Clarke</h4>
+                    <p class="testimonial-text">“I love the subscription plans! The premium content is worth every penny.”</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================
+   LINKING TESTIMONIALS CSS
+=============================== -->
+<link rel="stylesheet" href="{% static 'css/testimonials.css' %}">

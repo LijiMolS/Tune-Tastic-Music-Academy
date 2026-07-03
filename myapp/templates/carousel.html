@@ -1,0 +1,110 @@
+{% load static %}
+
+<!-- ================= CAROUSEL SECTION ================= -->
+<section id="carousel">
+
+  <div id="academyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#academyCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#academyCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#academyCarousel" data-bs-slide-to="2"></button>
+    </div>
+
+    <!-- ================= Slides ================= -->
+    <div class="carousel-inner">
+
+      <!-- ===== Slide 1 ===== -->
+      <div class="carousel-item active">
+
+        <video class="carousel-video" autoplay muted loop playsinline>
+          <source src="{% static 'videos/pianobeginner.mp4' %}" type="video/mp4">
+        </video>
+
+        <!-- Dark Overlay -->
+        <div class="carousel-overlay"></div>
+
+        <div class="carousel-caption">
+          <h2>Learn Music the Right Way</h2>
+          <p>
+            Explore structured courses designed to build strong musical foundations
+            and guide you from beginner to confident performer.
+          </p>
+          <a href="{% url 'courses' %}" class="profile-btn">View Courses</a>
+        </div>
+
+      </div>
+
+      <!-- ===== Slide 2 ===== -->
+      <div class="carousel-item" data-bs-interval="9000">
+
+        <video class="carousel-video" autoplay muted loop playsinline>
+          <source src="{% static 'videos/keyboardbeginner.mp4' %}" type="video/mp4">
+        </video>
+
+        <div class="carousel-overlay"></div>
+
+        <div class="carousel-caption">
+          <h2>Turn Practice Into Performance</h2>
+          <p>
+          Practice daily using structured lessons and join live sessions to refine your playing skills with expert guidance.
+          </p>
+          <a href="{% url 'subscription' %}" class="profile-btn">Start Practice</a>
+        </div>
+
+      </div>
+
+      <!-- ===== Slide 3 ===== -->
+      <div class="carousel-item" data-bs-interval="9000">
+
+        <video class="carousel-video" autoplay muted loop playsinline>
+          <source src="{% static 'videos/keyboardtracking.mp4' %}" type="video/mp4">
+        </video>
+
+        <div class="carousel-overlay"></div>
+
+        <div class="carousel-caption">
+          <h2>Track Progress and Continue Growing</h2>
+          <p>
+            Monitor achievements, manage your learning profile,
+            and unlock advanced lessons through flexible subscriptions.
+          </p>
+          <a href="{% url 'profile' %}" class="profile-btn">View Dashboard</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button"
+            data-bs-target="#academyCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button"
+            data-bs-target="#academyCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</section>
+
+
+<!-- ================= Background Music ================= -->
+<audio id="carouselMusic" loop preload="auto">
+  <source src="{% static 'audios/carouselmusic.mp3' %}" type="audio/mpeg">
+</audio>
+
+<button id="musicToggle" class="music-btn">
+  🔊 Music
+</button>
+
+
+<!-- ================= CSS ================= -->
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+
+<!-- ================= JS ================= -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
